@@ -9,7 +9,7 @@ namespace DungeonLang
     {
         static void Main(string[] args)
         {
-            string input = "(2 + 3) * #2FC";
+            string input = "PI + 4";
             var tokens = new Lexer(input).Tokenize();
             foreach(var token in tokens)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,7 @@ namespace DungeonLang.Parser
             {
                 char current = Peek(0);
                 if (Char.IsDigit(current)) TokenizeNumber();
+                else if (Char.IsLetter(current)) TokenizeWord();
                 else if (current == '#')
                 {
                     Next();
@@ -74,13 +76,38 @@ namespace DungeonLang.Parser
         {
             StringBuilder buffer = new StringBuilder();
             char current = Peek(0);
-            while (Char.IsDigit(current))
+            while (true)
             {
+                if (current == '.')
+                {
+                    if (buffer.ToString().IndexOf(".") != -1) throw new RuntimeException("Invalid float number");
+                }
+                else if (!Char.IsDigit(current))
+                {
+                    break;
+                }
                 buffer.Append(current);
                 current = Next();
             }
             AddToken(TokenType.NUMBER, buffer.ToString());
         }
+
+        private void TokenizeWord()
+        {
+            StringBuilder buffer = new StringBuilder();
+            char current = Peek(0);
+            while (true)
+            {
+                if(!Char.IsLetterOrDigit(current) && (current != '_') && (current != '$'))
+                {
+                    break;
+                }
+                buffer.Append(current);
+                current = Next();
+            }
+            AddToken(TokenType.WORD, buffer.ToString());
+        }
+
         private bool IsHexNumber(char current)
         {
             return "abcdef".IndexOf(Char.ToLower(current)) != -1;

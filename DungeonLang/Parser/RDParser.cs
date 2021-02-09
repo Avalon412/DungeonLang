@@ -96,11 +96,15 @@ namespace DungeonLang.Parser
             Token current = GetToken(0);
             if (IsMatch(TokenType.NUMBER))
             {
-                return new NumberExpression(Double.Parse(current.Text));
+                return new NumberExpression(Double.Parse(current.Text, CultureInfo.InvariantCulture));
             }
             if (IsMatch(TokenType.HEX_NUMBER))
             {
                 return new NumberExpression(Int64.Parse(current.Text, NumberStyles.HexNumber));
+            }
+            if (IsMatch(TokenType.WORD))
+            {
+                return new ConstantExpression(current.Text);
             }
             if (IsMatch(TokenType.LPAERN))
             {
