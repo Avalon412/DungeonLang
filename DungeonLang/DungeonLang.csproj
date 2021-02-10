@@ -61,9 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="lib\Constants.cs" />
+    <Compile Include="lib\Variables.cs" />
+    <Compile Include="Parser\AST\AssignmentSatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
-    <Compile Include="Parser\AST\ConstantExpression.cs" />
+    <Compile Include="Parser\AST\Statement.cs" />
+    <Compile Include="Parser\AST\VariableExpression.cs" />
     <Compile Include="Parser\AST\Expression.cs" />
     <Compile Include="Parser\AST\NumberExpression.cs" />
     <Compile Include="Parser\AST\UnaryExpression.cs" />

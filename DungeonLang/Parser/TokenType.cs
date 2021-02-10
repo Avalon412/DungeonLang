@@ -16,6 +16,7 @@ namespace DungeonLang.Parser
         MINUS,
         STAR,
         SLASH,
+        EQ,
 
         LPAERN,
         RPAREN,

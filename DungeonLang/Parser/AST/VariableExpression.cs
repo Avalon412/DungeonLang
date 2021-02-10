@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class ConstantExpression : Expression
+    public sealed class VariableExpression : Expression
     {
         private readonly string _name;
 
-        public ConstantExpression(string name)
+        public VariableExpression(string name)
         {
             this._name = name;
         }
 
         public double Evaluate()
         {
-            if (!Constants.IsExist(_name)) throw new RuntimeException("Constant does not exist");
-            return Constants.Get(_name);
+            if (!Variables.IsExist(_name)) throw new RuntimeException("Constant does not exist");
+            return Variables.Get(_name);
         }
 
         public override string ToString()

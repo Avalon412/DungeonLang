@@ -21,14 +21,39 @@ namespace DungeonLang.Parser
             this._size = tokens.Count;
         }
 
-        public List<AST.Expression> Parse() // Рекурсивный спуск
+        public List<Statement> Parse() // Рекурсивный спуск
         {
-            List<AST.Expression> result = new List<AST.Expression>();
+            List<Statement> result = new List<Statement>();
             while (!IsMatch(TokenType.EOF))
             {
-                result.Add(Expression());
+                result.Add(StatementRecognize());
             }
             return result;
+        }
+
+        private Statement StatementRecognize()
+        {
+            return AssignmentStatementRecognize();
+        }
+
+        private Statement AssignmentStatementRecognize()
+        {
+            Token current = GetToken(0);
+            if (IsMatch(TokenType.WORD) && GetToken(0).Type == TokenType.EQ)
+            {
+                string variable = current.Text;
+                Consume(TokenType.EQ);
+                return new AssignmentSatement(variable, Expression());
+            }
+            throw new RuntimeException("Unknown statement");
+        }
+
+        private Token Consume(TokenType type)
+        {
+            Token current = GetToken(0);
+            if (type != current.Type) throw new RuntimeException($"Token {current} doesn`t match {type}");
+            _pos++;
+            return current;
         }
 
         private AST.Expression Expression()
@@ -104,7 +129,7 @@ namespace DungeonLang.Parser
             }
             if (IsMatch(TokenType.WORD))
             {
-                return new ConstantExpression(current.Text);
+                return new VariableExpression(current.Text);
             }
             if (IsMatch(TokenType.LPAERN))
             {

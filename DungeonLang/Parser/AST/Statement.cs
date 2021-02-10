@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public interface Expression
+    public interface Statement
     {
-        double Evaluate();
+        void Execute();
     }
 }

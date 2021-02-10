@@ -14,10 +14,11 @@ namespace DungeonLang.Parser
         private readonly int _length;
         private int _pos;
 
-        private static readonly string OPERATOR_CHARS = "+-*/()";
+        private static readonly string OPERATOR_CHARS = "+-*/()=";
         private static readonly TokenType[] OPERATOR_TOKENS =
         {
-            TokenType.PLUS, TokenType.MINUS, TokenType.STAR, TokenType.SLASH, TokenType.LPAERN, TokenType.RPAREN
+            TokenType.PLUS, TokenType.MINUS, TokenType.STAR, TokenType.SLASH, TokenType.LPAERN, TokenType.RPAREN,
+            TokenType.EQ,
         };
 
         public Lexer(string input)
