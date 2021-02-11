@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonLang.Parser.AST
+namespace DungeonLang.lib
 {
-    class NumberExpression : Expression
+    public sealed class NumberValue : Value
     {
         private readonly double _value;
 
-        public NumberExpression(double value)
+        public NumberValue(double value)
         {
             this._value = value;
         }
@@ -20,9 +20,19 @@ namespace DungeonLang.Parser.AST
             return _value;
         }
 
-        public override string ToString()
+        public string AsString()
         {
             return _value.ToString();
+        }
+
+        public double AsNumber()
+        {
+            return _value;
+        }
+
+        public override string ToString()
+        {
+            return AsString();
         }
     }
 }

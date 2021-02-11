@@ -3,6 +3,8 @@ using DungeonLang.Parser;
 using DungeonLang.Parser.AST;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace DungeonLang
 {
@@ -10,8 +12,12 @@ namespace DungeonLang
     {
         static void Main(string[] args)
         {
-            string input = "Word = 2 + 2";
-            var tokens = new Lexer(input).Tokenize();
+            string input;
+            using (var sr = new StreamReader("program.txt", Encoding.UTF8))
+            {
+                input = sr.ReadToEnd();
+            }
+            List<Token> tokens = new Lexer(input).Tokenize();
             foreach(var token in tokens)
             {
                 Console.WriteLine(token);
@@ -26,8 +32,6 @@ namespace DungeonLang
             {
                 state.Execute();
             }
-            Console.WriteLine($"Word = {Variables.Get("Word")}");
-            Console.WriteLine($"Word2 = {Variables.Get("Word2")}");
             Console.ReadKey();
         }
     }

@@ -11,6 +11,10 @@ namespace DungeonLang.Parser
         NUMBER,
         HEX_NUMBER,
         WORD,
+        TEXT,
+
+        // Keywords
+        PRINT,
 
         PLUS,
         MINUS,

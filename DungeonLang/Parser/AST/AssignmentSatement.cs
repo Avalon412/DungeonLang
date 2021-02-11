@@ -20,7 +20,7 @@ namespace DungeonLang.Parser.AST
 
         public void Execute()
         {
-            double result = _expression.Evaluate();
+            Value result = _expression.Evaluate();
             Variables.Set(_variable, result);
         }
 

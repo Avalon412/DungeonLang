@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DungeonLang.lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    class UnaryExpression : Expression
+    public sealed class UnaryExpression : Expression
     {
         private readonly Expression _expr1;
         private readonly char _operation;
@@ -17,11 +18,11 @@ namespace DungeonLang.Parser.AST
             this._expr1 = expr;
         }
 
-        public double Evaluate()
+        public Value Evaluate()
         {
             switch (_operation)
             {
-                case '-': return -_expr1.Evaluate();
+                case '-': return new NumberValue(-_expr1.Evaluate().AsNumber());
                 case '+':
                 default:
                     return _expr1.Evaluate();

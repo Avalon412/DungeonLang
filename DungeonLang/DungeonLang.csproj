@@ -61,13 +61,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lib\NumberValue.cs" />
+    <Compile Include="lib\StringValue.cs" />
+    <Compile Include="lib\Value.cs" />
     <Compile Include="lib\Variables.cs" />
     <Compile Include="Parser\AST\AssignmentSatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
+    <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\Statement.cs" />
+    <Compile Include="Parser\AST\ValueExpression.cs" />
     <Compile Include="Parser\AST\VariableExpression.cs" />
     <Compile Include="Parser\AST\Expression.cs" />
-    <Compile Include="Parser\AST\NumberExpression.cs" />
     <Compile Include="Parser\AST\UnaryExpression.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\RDParser.cs" />

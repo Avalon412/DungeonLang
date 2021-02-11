@@ -35,6 +35,7 @@ namespace DungeonLang.Parser
                 char current = Peek(0);
                 if (Char.IsDigit(current)) TokenizeNumber();
                 else if (Char.IsLetter(current)) TokenizeWord();
+                else if (current == '"') TokenizeText();
                 else if (current == '#')
                 {
                     Next();
@@ -106,7 +107,43 @@ namespace DungeonLang.Parser
                 buffer.Append(current);
                 current = Next();
             }
-            AddToken(TokenType.WORD, buffer.ToString());
+            string word = buffer.ToString();
+            if (word.Equals("print"))
+            {
+                AddToken(TokenType.PRINT);
+            }
+            else
+            {
+                AddToken(TokenType.WORD, word);
+            }
+        }
+
+        private void TokenizeText()
+        {
+            Next();
+            StringBuilder buffer = new StringBuilder();
+            char current = Peek(0);
+
+            while (true)
+            {
+                if (current == '\\')
+                {
+                    current = Next();
+                    switch (current)
+                    {
+                        case '"': current = Next(); buffer.Append('"'); continue;
+                        case 'n': current = Next(); buffer.Append('\n'); continue;
+                        case 't': current = Next(); buffer.Append('\t'); continue;
+                    }
+                    buffer.Append('\\');
+                    continue;
+                }
+                if (current == '"') break;
+                buffer.Append(current);
+                current = Next();
+            }
+            Next();
+            AddToken(TokenType.TEXT, buffer.ToString());
         }
 
         private bool IsHexNumber(char current)

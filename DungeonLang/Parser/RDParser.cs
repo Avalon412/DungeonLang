@@ -33,10 +33,14 @@ namespace DungeonLang.Parser
 
         private Statement StatementRecognize()
         {
-            return AssignmentStatementRecognize();
+            if (IsMatch(TokenType.PRINT))
+            {
+                return new PrintStatement(Expression());
+            }
+            return AssignmentStatement();
         }
 
-        private Statement AssignmentStatementRecognize()
+        private Statement AssignmentStatement()
         {
             Token current = GetToken(0);
             if (IsMatch(TokenType.WORD) && GetToken(0).Type == TokenType.EQ)
@@ -121,15 +125,19 @@ namespace DungeonLang.Parser
             Token current = GetToken(0);
             if (IsMatch(TokenType.NUMBER))
             {
-                return new NumberExpression(Double.Parse(current.Text, CultureInfo.InvariantCulture));
+                return new ValueExpression(Double.Parse(current.Text, CultureInfo.InvariantCulture));
             }
             if (IsMatch(TokenType.HEX_NUMBER))
             {
-                return new NumberExpression(Int64.Parse(current.Text, NumberStyles.HexNumber));
+                return new ValueExpression(Int64.Parse(current.Text, NumberStyles.HexNumber));
             }
             if (IsMatch(TokenType.WORD))
             {
                 return new VariableExpression(current.Text);
+            }
+            if (IsMatch(TokenType.TEXT))
+            {
+                return new ValueExpression(current.Text);
             }
             if (IsMatch(TokenType.LPAERN))
             {

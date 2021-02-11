@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DungeonLang.lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    class BinaryExpression : Expression
+    public sealed class BinaryExpression : Expression
     {
         private readonly Expression _expr1;
         private readonly Expression _expr2;
@@ -19,16 +20,41 @@ namespace DungeonLang.Parser.AST
             this._expr2 = expr2;
         }
 
-        public double Evaluate()
+        public Value Evaluate()
         {
+            Value value1 = _expr1.Evaluate();
+            Value value2 = _expr2.Evaluate();
+            if (value1 is StringValue)
+            {
+                string string1 = value1.AsString();
+                switch(_operation)
+                {
+                    case '*':
+                        {
+                            int iterations = (int)value2.AsNumber();
+                            StringBuilder builder = new StringBuilder();
+                            for (int i = 0; i < iterations; i++)
+                            {
+                                builder.Append(value1);
+                            }
+                            return new StringValue(builder.ToString());
+                        }
+                    case '+':
+                    default:
+                        return new StringValue(string1 + value2.AsString());
+                }
+            }
+
+            double number1 = value1.AsNumber();
+            double number2 = value2.AsNumber();
             switch (_operation)
             {
-                case '-': return _expr1.Evaluate() - _expr2.Evaluate();
-                case '*': return _expr1.Evaluate() * _expr2.Evaluate();
-                case '/': return _expr1.Evaluate() / _expr2.Evaluate();
+                case '-': return new NumberValue(number1 - number2);
+                case '*': return new NumberValue(number1 * number2);
+                case '/': return new NumberValue(number1 / number2);
                 case '+':
                 default:
-                    return _expr1.Evaluate() + _expr2.Evaluate();
+                    return new NumberValue(number1 + number2);
             }
         }
 
