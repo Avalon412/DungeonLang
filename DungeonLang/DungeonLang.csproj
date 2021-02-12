@@ -67,6 +67,8 @@
     <Compile Include="lib\Variables.cs" />
     <Compile Include="Parser\AST\AssignmentSatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
+    <Compile Include="Parser\AST\ConditionalExpression.cs" />
+    <Compile Include="Parser\AST\IfStatement.cs" />
     <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\Statement.cs" />
     <Compile Include="Parser\AST\ValueExpression.cs" />

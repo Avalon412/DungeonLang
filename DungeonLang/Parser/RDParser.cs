@@ -26,16 +26,20 @@ namespace DungeonLang.Parser
             List<Statement> result = new List<Statement>();
             while (!IsMatch(TokenType.EOF))
             {
-                result.Add(StatementRecognize());
+                result.Add(StatementParse());
             }
             return result;
         }
 
-        private Statement StatementRecognize()
+        private Statement StatementParse()
         {
             if (IsMatch(TokenType.PRINT))
             {
-                return new PrintStatement(Expression());
+                return new PrintStatement(ExpressionParse());
+            }
+            if (IsMatch(TokenType.IF))
+            {
+                return IfElse();
             }
             return AssignmentStatement();
         }
@@ -47,7 +51,7 @@ namespace DungeonLang.Parser
             {
                 string variable = current.Text;
                 Consume(TokenType.EQ);
-                return new AssignmentSatement(variable, Expression());
+                return new AssignmentSatement(variable, ExpressionParse());
             }
             throw new RuntimeException("Unknown statement");
         }
@@ -60,9 +64,51 @@ namespace DungeonLang.Parser
             return current;
         }
 
-        private AST.Expression Expression()
+        private Statement IfElse()
         {
-            return Additive();
+            Expression condition = ExpressionParse();
+            Statement ifStatement = StatementParse();
+            Statement elseStatement;
+            if (IsMatch(TokenType.ELSE))
+            {
+                elseStatement = StatementParse();
+            }
+            else
+            {
+                elseStatement = null;
+            }
+            return new IfStatement(condition, ifStatement, elseStatement);
+        }
+
+        private AST.Expression ExpressionParse()
+        {
+            return Conditional();
+        }
+
+        private AST.Expression Conditional()
+        {
+            Expression result = Additive();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.EQ))
+                {
+                    result = new ConditionalExpression('=', result, Additive());
+                    continue;
+                }
+                if (IsMatch(TokenType.LT))
+                {
+                    result = new ConditionalExpression('<', result, Additive());
+                    continue;
+                }
+                if (IsMatch(TokenType.GT))
+                {
+                    result = new ConditionalExpression('>', result, Additive());
+                    continue;
+                }
+                break;
+            }
+            return result;
         }
 
         private AST.Expression Additive()
@@ -141,7 +187,7 @@ namespace DungeonLang.Parser
             }
             if (IsMatch(TokenType.LPAERN))
             {
-                Expression result = Expression();
+                Expression result = ExpressionParse();
                 IsMatch(TokenType.RPAREN);
                 return result;
             }

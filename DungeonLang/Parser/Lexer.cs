@@ -14,11 +14,11 @@ namespace DungeonLang.Parser
         private readonly int _length;
         private int _pos;
 
-        private static readonly string OPERATOR_CHARS = "+-*/()=";
+        private static readonly string OPERATOR_CHARS = "+-*/()=<>";
         private static readonly TokenType[] OPERATOR_TOKENS =
         {
             TokenType.PLUS, TokenType.MINUS, TokenType.STAR, TokenType.SLASH, TokenType.LPAERN, TokenType.RPAREN,
-            TokenType.EQ,
+            TokenType.EQ, TokenType.LT, TokenType.GT, 
         };
 
         public Lexer(string input)
@@ -108,13 +108,13 @@ namespace DungeonLang.Parser
                 current = Next();
             }
             string word = buffer.ToString();
-            if (word.Equals("print"))
+            switch (word)
             {
-                AddToken(TokenType.PRINT);
-            }
-            else
-            {
-                AddToken(TokenType.WORD, word);
+                case "print": AddToken(TokenType.PRINT); break;
+                case "if": AddToken(TokenType.IF); break;
+                case "else": AddToken(TokenType.ELSE); break;
+                default:
+                    AddToken(TokenType.WORD, word); break;
             }
         }
 

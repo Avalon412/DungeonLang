@@ -15,12 +15,16 @@ namespace DungeonLang.Parser
 
         // Keywords
         PRINT,
+        IF,
+        ELSE,
 
         PLUS,
         MINUS,
         STAR,
         SLASH,
         EQ,
+        LT,
+        GT,
 
         LPAERN,
         RPAREN,

@@ -15,6 +15,11 @@ namespace DungeonLang.lib
             this._value = value;
         }
 
+        public NumberValue(bool value)
+        {
+            this._value = value ? 1 : 0;
+        }
+
         public double Evaluate()
         {
             return _value;
