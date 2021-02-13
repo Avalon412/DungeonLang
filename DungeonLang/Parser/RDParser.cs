@@ -82,7 +82,54 @@ namespace DungeonLang.Parser
 
         private AST.Expression ExpressionParse()
         {
-            return Conditional();
+            return LogicOr();
+        }
+
+        private AST.Expression LogicOr()
+        {
+            Expression result = LogicAnd();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.BARBAR))
+                {
+                    result = new ConditionalExpression(ConditionalExpression.Operator.OR, result, LogicAnd());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.Expression LogicAnd()
+        {
+            Expression result = Equality();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.AMPAMP))
+                {
+                    result = new ConditionalExpression(ConditionalExpression.Operator.AND, result, Equality());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.Expression Equality()
+        {
+            Expression result = Conditional();
+
+            if (IsMatch(TokenType.EQEQ))
+            {
+                return new ConditionalExpression(ConditionalExpression.Operator.EQUALS, result, Conditional());
+            }
+            if (IsMatch(TokenType.EXCLEQ))
+            {
+                return new ConditionalExpression(ConditionalExpression.Operator.NOT_EQUALS, result, Conditional());
+            }
+            return result;
         }
 
         private AST.Expression Conditional()
@@ -91,19 +138,24 @@ namespace DungeonLang.Parser
 
             while (true)
             {
-                if (IsMatch(TokenType.EQ))
-                {
-                    result = new ConditionalExpression('=', result, Additive());
-                    continue;
-                }
                 if (IsMatch(TokenType.LT))
                 {
-                    result = new ConditionalExpression('<', result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.LT, result, Additive());
+                    continue;
+                }
+                if (IsMatch(TokenType.LTEQ))
+                {
+                    result = new ConditionalExpression(ConditionalExpression.Operator.LTEQ, result, Additive());
                     continue;
                 }
                 if (IsMatch(TokenType.GT))
                 {
-                    result = new ConditionalExpression('>', result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.GT, result, Additive());
+                    continue;
+                }
+                if (IsMatch(TokenType.GTEQ))
+                {
+                    result = new ConditionalExpression(ConditionalExpression.Operator.GTEQ, result, Additive());
                     continue;
                 }
                 break;
@@ -185,7 +237,7 @@ namespace DungeonLang.Parser
             {
                 return new ValueExpression(current.Text);
             }
-            if (IsMatch(TokenType.LPAERN))
+            if (IsMatch(TokenType.LPAREN))
             {
                 Expression result = ExpressionParse();
                 IsMatch(TokenType.RPAREN);

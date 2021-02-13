@@ -14,12 +14,34 @@ namespace DungeonLang.Parser
         private readonly int _length;
         private int _pos;
 
-        private static readonly string OPERATOR_CHARS = "+-*/()=<>";
-        private static readonly TokenType[] OPERATOR_TOKENS =
+        private static readonly string OPERATOR_CHARS = "+-*/()=<>!&|";
+        private static readonly Dictionary<string, TokenType> OPERATORS;
+
+        static Lexer()
         {
-            TokenType.PLUS, TokenType.MINUS, TokenType.STAR, TokenType.SLASH, TokenType.LPAERN, TokenType.RPAREN,
-            TokenType.EQ, TokenType.LT, TokenType.GT, 
-        };
+            OPERATORS = new Dictionary<string, TokenType>();
+            OPERATORS.Add("+", TokenType.PLUS);
+            OPERATORS.Add("-", TokenType.MINUS);
+            OPERATORS.Add("*", TokenType.STAR);
+            OPERATORS.Add("/", TokenType.SLASH);
+            OPERATORS.Add("(", TokenType.LPAREN);
+            OPERATORS.Add(")", TokenType.RPAREN);
+            OPERATORS.Add("=", TokenType.EQ);
+            OPERATORS.Add("<", TokenType.LT);
+            OPERATORS.Add(">", TokenType.GT);
+
+            OPERATORS.Add("!", TokenType.EXCL);
+            OPERATORS.Add("&", TokenType.AMP);
+            OPERATORS.Add("|", TokenType.BAR);
+
+            OPERATORS.Add("==", TokenType.EQEQ);
+            OPERATORS.Add("!=", TokenType.EXCLEQ);
+            OPERATORS.Add("<=", TokenType.LTEQ);
+            OPERATORS.Add(">=", TokenType.GTEQ);
+
+            OPERATORS.Add("&&", TokenType.AMPAMP);
+            OPERATORS.Add("||", TokenType.BARBAR);
+        }
 
         public Lexer(string input)
         {
@@ -56,9 +78,61 @@ namespace DungeonLang.Parser
 
         private void TokenizeOperator()
         {
-            int position = OPERATOR_CHARS.IndexOf(Peek(0));
-            AddToken(OPERATOR_TOKENS[position]);
+            char current = Peek(0);
+
+            if (current == '/')
+            {
+                if (Peek(1) == '/')
+                {
+                    Next();
+                    Next();
+                    TokenizeComment();
+                    return;
+                }
+                else if (Peek(1) == '*')
+                {
+                    Next();
+                    Next();
+                    TokenizeMultilineComment();
+                    return;
+                }
+            }
+            StringBuilder buffer = new StringBuilder();
+            while (true)
+            {
+                string text = buffer.ToString();
+                if (!OPERATORS.ContainsKey(text + current) && (!String.IsNullOrEmpty(text)))
+                {
+                    TokenType token;
+                    OPERATORS.TryGetValue(text, out token);
+                    AddToken(token);
+                    return;
+                }
+                buffer.Append(current);
+                current = Next();
+            }
+        }
+
+        private void TokenizeMultilineComment()
+        {
+            char current = Peek(0);
+            while (true)
+            {
+                if (current == '\0') throw new RuntimeException("Missing close tag");
+                if (current == '*' && Peek(1) == '/') break;
+                current = Next();
+            }
             Next();
+            Next();
+        }
+
+        private void TokenizeComment()
+        {
+            char current = Peek(0);
+            while ("\r\n\0".IndexOf(current) != -1)
+            {
+                current = Next();
+            }
         }
 
         private void TokenizeHexNumber()

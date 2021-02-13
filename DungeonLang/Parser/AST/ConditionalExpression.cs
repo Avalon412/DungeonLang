@@ -9,11 +9,31 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ConditionalExpression : Expression
     {
+        public enum Operator
+        {
+            PLUS,
+            MINUS,
+            MULTIPLY,
+            DIVIDE,
+
+            EQUALS,
+            NOT_EQUALS,
+
+            LT,
+            LTEQ,
+            GT,
+            GTEQ,
+
+            AND,
+            OR
+        }
+
         private readonly Expression _expression1;
         private readonly Expression _expression2;
-        private readonly char _operation;
+        private readonly Operator _operation;
+        private string _operator;
 
-        public ConditionalExpression(char operation, Expression expression1, Expression expression2)
+        public ConditionalExpression(Operator operation, Expression expression1, Expression expression2)
         {
             this._expression1 = expression1;
             this._expression2 = expression2;
@@ -24,35 +44,42 @@ namespace DungeonLang.Parser.AST
         {
             Value value1 = _expression1.Evaluate();
             Value value2 = _expression2.Evaluate();
+
+            double number1;
+            double number2;
             if (value1 is StringValue)
             {
-                string str1 = value1.AsString();
-                string str2 = value2.AsString();
-                switch (_operation)
-                {
-                    case '<': return new NumberValue(str1.CompareTo(str2) < 0);
-                    case '>': return new NumberValue(str1.CompareTo(str2) > 0);
-                    case '=':
-                    default:
-                        return new NumberValue(str1.Equals(str2));
-                }
+                number1 = value1.AsString().CompareTo(value2.AsString());
+                number2 = 0;
+            }
+            else
+            {
+                number1 = value1.AsNumber();
+                number2 = value2.AsNumber();
             }
 
-            double num1 = value1.AsNumber();
-            double num2 = value2.AsNumber();
+            bool result;
             switch (_operation)
             {
-                case '<': return new NumberValue(num1 < num2);
-                case '>': return new NumberValue(num1 > num2);
-                case '=':
+                case Operator.LT: result = number1 < number2; _operator = "<"; break;
+                case Operator.LTEQ: result = number1 <= number2; _operator = "<="; break;
+                case Operator.GT: result = number1 > number2; _operator = ">"; break;
+                case Operator.GTEQ: result = number1 >= number2; _operator = ">="; break;
+                case Operator.NOT_EQUALS: result = number1 != number2; _operator = "!="; break;
+
+                case Operator.AND: result = (number1 != 0) && (number2 != 0); _operator = "&&"; break;
+                case Operator.OR: result = (number1 != 0) || (number2 != 0); _operator = "||"; break;
+
+                case Operator.EQUALS:
                 default:
-                    return new NumberValue(num1 == num2);
+                    result = (number1 != 0) == (number2 != 0); _operator = "=="; break;
             }
+            return new NumberValue(result);
         }
 
         public override string ToString()
         {
-            return $"{_expression1} {_operation} {_expression2}";
+            return $"{_expression1} {_operator} {_expression2}";
         }
     }
 }

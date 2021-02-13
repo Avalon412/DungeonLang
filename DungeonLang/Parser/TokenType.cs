@@ -23,10 +23,20 @@ namespace DungeonLang.Parser
         STAR,
         SLASH,
         EQ,
+        EQEQ,
+        EXCL,
+        EXCLEQ,
         LT,
+        LTEQ,
         GT,
+        GTEQ,
 
-        LPAERN,
+        AMP,
+        AMPAMP,
+        BAR,
+        BARBAR,
+
+        LPAREN,
         RPAREN,
 
         EOF
