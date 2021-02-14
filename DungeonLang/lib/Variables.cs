@@ -35,7 +35,7 @@ namespace DungeonLang.lib
 
         public static void Set(string key, Value value)
         {
-            _variables.Add(key, value);
+            _variables[key] = value;
         }
     }
 }

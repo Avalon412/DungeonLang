@@ -14,7 +14,7 @@ namespace DungeonLang.Parser
         private readonly int _length;
         private int _pos;
 
-        private static readonly string OPERATOR_CHARS = "+-*/()=<>!&|";
+        private static readonly string OPERATOR_CHARS = "+-*/(){}=<>!&|,";
         private static readonly Dictionary<string, TokenType> OPERATORS;
 
         static Lexer()
@@ -26,9 +26,12 @@ namespace DungeonLang.Parser
             OPERATORS.Add("/", TokenType.SLASH);
             OPERATORS.Add("(", TokenType.LPAREN);
             OPERATORS.Add(")", TokenType.RPAREN);
+            OPERATORS.Add("{", TokenType.LBRACE);
+            OPERATORS.Add("}", TokenType.RBRACE);
             OPERATORS.Add("=", TokenType.EQ);
             OPERATORS.Add("<", TokenType.LT);
             OPERATORS.Add(">", TokenType.GT);
+            OPERATORS.Add(",", TokenType.COMMA);
 
             OPERATORS.Add("!", TokenType.EXCL);
             OPERATORS.Add("&", TokenType.AMP);
@@ -187,6 +190,8 @@ namespace DungeonLang.Parser
                 case "print": AddToken(TokenType.PRINT); break;
                 case "if": AddToken(TokenType.IF); break;
                 case "else": AddToken(TokenType.ELSE); break;
+                case "while": AddToken(TokenType.WHILE); break;
+                case "for": AddToken(TokenType.FOR); break;
                 default:
                     AddToken(TokenType.WORD, word); break;
             }

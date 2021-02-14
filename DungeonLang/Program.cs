@@ -23,15 +23,9 @@ namespace DungeonLang
                 Console.WriteLine(token);
             }
 
-            List<Statement> statements = new RDParser(tokens).Parse();
-            foreach (var state in statements)
-            {
-                Console.WriteLine(state);
-            }
-            foreach (var state in statements)
-            {
-                state.Execute();
-            }
+            Statement program = new RDParser(tokens).Parse();
+            Console.WriteLine(program.ToString());
+            program.Execute();
             Console.ReadKey();
         }
     }

@@ -17,6 +17,8 @@ namespace DungeonLang.Parser
         PRINT,
         IF,
         ELSE,
+        WHILE,
+        FOR,
 
         PLUS,
         MINUS,
@@ -38,6 +40,9 @@ namespace DungeonLang.Parser
 
         LPAREN,
         RPAREN,
+        LBRACE,
+        RBRACE,
+        COMMA,
 
         EOF
     }

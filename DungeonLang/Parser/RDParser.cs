@@ -21,14 +21,31 @@ namespace DungeonLang.Parser
             this._size = tokens.Count;
         }
 
-        public List<Statement> Parse() // Рекурсивный спуск
+        public Statement Parse() // Рекурсивный спуск
         {
-            List<Statement> result = new List<Statement>();
+            BlockStatement result = new BlockStatement();
             while (!IsMatch(TokenType.EOF))
             {
                 result.Add(StatementParse());
             }
             return result;
+        }
+
+        private Statement Block()
+        {
+            BlockStatement block = new BlockStatement();
+            Consume(TokenType.LBRACE);
+            while (!IsMatch(TokenType.RBRACE))
+            {
+                block.Add(StatementParse());
+            }
+            return block;
+        }
+
+        private Statement StatementOrBlock()
+        {
+            if (GetToken(0).Type == TokenType.LBRACE) return Block();
+            return StatementParse();
         }
 
         private Statement StatementParse()
@@ -40,6 +57,14 @@ namespace DungeonLang.Parser
             if (IsMatch(TokenType.IF))
             {
                 return IfElse();
+            }
+            if (IsMatch(TokenType.WHILE))
+            {
+                return WhileStatement();
+            }
+            if (IsMatch(TokenType.FOR))
+            {
+                return ForStatement();
             }
             return AssignmentStatement();
         }
@@ -67,17 +92,35 @@ namespace DungeonLang.Parser
         private Statement IfElse()
         {
             Expression condition = ExpressionParse();
-            Statement ifStatement = StatementParse();
+            Statement ifStatement = StatementOrBlock();
             Statement elseStatement;
             if (IsMatch(TokenType.ELSE))
             {
-                elseStatement = StatementParse();
+                elseStatement = StatementOrBlock();
             }
             else
             {
                 elseStatement = null;
             }
             return new IfStatement(condition, ifStatement, elseStatement);
+        }
+
+        private Statement WhileStatement()
+        {
+            Expression condition = ExpressionParse();
+            Statement statement = StatementOrBlock();
+            return new WhileStatement(condition, statement);
+        }
+
+        public Statement ForStatement()
+        {
+            Statement initialization = AssignmentStatement();
+            Consume(TokenType.COMMA);
+            Expression termination = ExpressionParse();
+            Consume(TokenType.COMMA);
+            Statement increment = AssignmentStatement();
+            Statement statement = StatementOrBlock();
+            return new ForStatement(initialization, termination, increment, statement);
         }
 
         private AST.Expression ExpressionParse()

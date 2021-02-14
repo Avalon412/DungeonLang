@@ -67,7 +67,9 @@
     <Compile Include="lib\Variables.cs" />
     <Compile Include="Parser\AST\AssignmentSatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
+    <Compile Include="Parser\AST\BlockStatement.cs" />
     <Compile Include="Parser\AST\ConditionalExpression.cs" />
+    <Compile Include="Parser\AST\ForStatement.cs" />
     <Compile Include="Parser\AST\IfStatement.cs" />
     <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\Statement.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Parser\AST\VariableExpression.cs" />
     <Compile Include="Parser\AST\Expression.cs" />
     <Compile Include="Parser\AST\UnaryExpression.cs" />
+    <Compile Include="Parser\AST\WhileStatement.cs" />
     <Compile Include="Parser\Lexer.cs" />
     <Compile Include="Parser\RDParser.cs" />
     <Compile Include="Parser\Token.cs" />
