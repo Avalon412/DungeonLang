@@ -10,14 +10,39 @@ namespace DungeonLang.Parser
     {
         NUMBER,
         HEX_NUMBER,
+        WORD,
+        TEXT,
+
+        // Keywords
+        PRINT,
+        IF,
+        ELSE,
+        WHILE,
+        FOR,
 
         PLUS,
         MINUS,
         STAR,
         SLASH,
+        EQ,
+        EQEQ,
+        EXCL,
+        EXCLEQ,
+        LT,
+        LTEQ,
+        GT,
+        GTEQ,
 
-        LPAERN,
+        AMP,
+        AMPAMP,
+        BAR,
+        BARBAR,
+
+        LPAREN,
         RPAREN,
+        LBRACE,
+        RBRACE,
+        COMMA,
 
         EOF
     }

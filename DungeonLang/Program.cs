@@ -1,7 +1,10 @@
-﻿using DungeonLang.Parser;
+﻿using DungeonLang.lib;
+using DungeonLang.Parser;
 using DungeonLang.Parser.AST;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace DungeonLang
 {
@@ -9,19 +12,20 @@ namespace DungeonLang
     {
         static void Main(string[] args)
         {
-            string input = "(2 + 3) * #2FC";
-            var tokens = new Lexer(input).Tokenize();
+            string input;
+            using (var sr = new StreamReader("program.txt", Encoding.UTF8))
+            {
+                input = sr.ReadToEnd();
+            }
+            List<Token> tokens = new Lexer(input).Tokenize();
             foreach(var token in tokens)
             {
                 Console.WriteLine(token);
             }
 
-            List<Expression> expressions = new RDParser(tokens).Parse();
-            foreach (var expr in expressions)
-            {
-                Console.WriteLine(expr + " = " + expr.Evaluate());
-            }
-
+            Statement program = new RDParser(tokens).Parse();
+            Console.WriteLine(program.ToString());
+            program.Execute();
             Console.ReadKey();
         }
     }

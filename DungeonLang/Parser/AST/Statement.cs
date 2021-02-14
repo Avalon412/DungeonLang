@@ -1,5 +1,4 @@
-﻿using DungeonLang.lib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public interface Expression
+    public interface Statement
     {
-        Value Evaluate();
+        void Execute();
     }
 }
