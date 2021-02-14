@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class WhileStatement : Statement
+    public sealed class DoWhileStatement : Statement
     {
         private readonly Expression _condition;
         private readonly Statement _statement;
 
-        public WhileStatement(Expression condition, Statement statement)
+        public DoWhileStatement(Expression condition, Statement statement)
         {
             this._condition = condition;
             this._statement = statement;
@@ -19,7 +19,7 @@ namespace DungeonLang.Parser.AST
 
         public void Execute()
         {
-            while (_condition.Evaluate().AsNumber() != 0)
+            do
             {
                 try
                 {
@@ -33,12 +33,12 @@ namespace DungeonLang.Parser.AST
                 {
                     continue;
                 }
-            }
+            } while (_condition.Evaluate().AsNumber() != 0);
         }
 
         public override string ToString()
         {
-            return $"while {_condition}  {_statement}";
+            return $"do {_statement} while {_condition}";
         }
     }
 }

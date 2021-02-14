@@ -25,7 +25,18 @@ namespace DungeonLang.Parser.AST
         {
             for (_initialization.Execute(); _termination.Evaluate().AsNumber() != 0; _increment.Execute())
             {
-                _statement.Execute();
+                try
+                {
+                    _statement.Execute();
+                }
+                catch (BreakStatement bx)
+                {
+                    break;
+                }
+                catch (ContinueStatement cx)
+                {
+                    continue;
+                }
             }
         }
 

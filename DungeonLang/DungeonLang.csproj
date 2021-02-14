@@ -65,10 +65,13 @@
     <Compile Include="lib\StringValue.cs" />
     <Compile Include="lib\Value.cs" />
     <Compile Include="lib\Variables.cs" />
-    <Compile Include="Parser\AST\AssignmentSatement.cs" />
+    <Compile Include="Parser\AST\AssignmentStatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
     <Compile Include="Parser\AST\BlockStatement.cs" />
+    <Compile Include="Parser\AST\BreakStatement.cs" />
     <Compile Include="Parser\AST\ConditionalExpression.cs" />
+    <Compile Include="Parser\AST\ContinueStatement.cs" />
+    <Compile Include="Parser\AST\DoWhileStatement.cs" />
     <Compile Include="Parser\AST\ForStatement.cs" />
     <Compile Include="Parser\AST\IfStatement.cs" />
     <Compile Include="Parser\AST\PrintStatement.cs" />

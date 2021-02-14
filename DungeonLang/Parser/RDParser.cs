@@ -66,6 +66,18 @@ namespace DungeonLang.Parser
             {
                 return ForStatement();
             }
+            if (IsMatch(TokenType.DO))
+            {
+                return DoWhileStatement();
+            }
+            if (IsMatch(TokenType.BREAK))
+            {
+                return new BreakStatement();
+            }
+            if (IsMatch(TokenType.CONTINUE))
+            {
+                return new ContinueStatement();
+            }
             return AssignmentStatement();
         }
 
@@ -76,7 +88,7 @@ namespace DungeonLang.Parser
             {
                 string variable = current.Text;
                 Consume(TokenType.EQ);
-                return new AssignmentSatement(variable, ExpressionParse());
+                return new AssignmentStatement(variable, ExpressionParse());
             }
             throw new RuntimeException("Unknown statement");
         }
@@ -110,6 +122,14 @@ namespace DungeonLang.Parser
             Expression condition = ExpressionParse();
             Statement statement = StatementOrBlock();
             return new WhileStatement(condition, statement);
+        }
+
+        private Statement DoWhileStatement()
+        {
+            Statement statement = StatementOrBlock();
+            Consume(TokenType.WHILE);
+            Expression condition = ExpressionParse();
+            return new DoWhileStatement(condition, statement);
         }
 
         public Statement ForStatement()

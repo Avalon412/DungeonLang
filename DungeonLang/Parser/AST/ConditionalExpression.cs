@@ -72,7 +72,7 @@ namespace DungeonLang.Parser.AST
 
                 case Operator.EQUALS:
                 default:
-                    result = (number1 != 0) == (number2 != 0); _operator = "=="; break;
+                    result = number1 == number2; _operator = "=="; break;
             }
             return new NumberValue(result);
         }

@@ -19,6 +19,9 @@ namespace DungeonLang.Parser
         ELSE,
         WHILE,
         FOR,
+        DO,
+        BREAK,
+        CONTINUE,
 
         PLUS,
         MINUS,

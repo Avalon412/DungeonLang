@@ -192,6 +192,9 @@ namespace DungeonLang.Parser
                 case "else": AddToken(TokenType.ELSE); break;
                 case "while": AddToken(TokenType.WHILE); break;
                 case "for": AddToken(TokenType.FOR); break;
+                case "do": AddToken(TokenType.DO); break;
+                case "break": AddToken(TokenType.BREAK); break;
+                case "continue": AddToken(TokenType.CONTINUE); break;
                 default:
                     AddToken(TokenType.WORD, word); break;
             }
