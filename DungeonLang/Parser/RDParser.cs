@@ -78,6 +78,10 @@ namespace DungeonLang.Parser
             {
                 return new ContinueStatement();
             }
+            if (GetToken(0).Type == TokenType.WORD && GetToken(1).Type == TokenType.LPAREN)
+            {
+                return new FunctionStatement(Function());
+            }
             return AssignmentStatement();
         }
 
@@ -141,6 +145,19 @@ namespace DungeonLang.Parser
             Statement increment = AssignmentStatement();
             Statement statement = StatementOrBlock();
             return new ForStatement(initialization, termination, increment, statement);
+        }
+
+        private FunctionalExpression Function()
+        {
+            string name = Consume(TokenType.WORD).Text;
+            Consume(TokenType.LPAREN);
+            FunctionalExpression function = new FunctionalExpression(name);
+            while (!IsMatch(TokenType.RPAREN))
+            {
+                function.AddArgument(ExpressionParse());
+                IsMatch(TokenType.COMMA);
+            }
+            return function;
         }
 
         private AST.Expression ExpressionParse()
@@ -291,6 +308,10 @@ namespace DungeonLang.Parser
             if (IsMatch(TokenType.HEX_NUMBER))
             {
                 return new ValueExpression(Int64.Parse(current.Text, NumberStyles.HexNumber));
+            }
+            if (GetToken(0).Type == TokenType.WORD && GetToken(1).Type == TokenType.LPAREN)
+            {
+                return Function();
             }
             if (IsMatch(TokenType.WORD))
             {

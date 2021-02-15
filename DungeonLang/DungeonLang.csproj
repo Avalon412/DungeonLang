@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lib\Functions.cs" />
     <Compile Include="lib\NumberValue.cs" />
     <Compile Include="lib\StringValue.cs" />
     <Compile Include="lib\Value.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Parser\AST\ContinueStatement.cs" />
     <Compile Include="Parser\AST\DoWhileStatement.cs" />
     <Compile Include="Parser\AST\ForStatement.cs" />
+    <Compile Include="Parser\AST\FunctionalExpression.cs" />
+    <Compile Include="Parser\AST\FunctionStatement.cs" />
     <Compile Include="Parser\AST\IfStatement.cs" />
     <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\Statement.cs" />
