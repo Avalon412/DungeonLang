@@ -195,6 +195,8 @@ namespace DungeonLang.Parser
                 case "do": AddToken(TokenType.DO); break;
                 case "break": AddToken(TokenType.BREAK); break;
                 case "continue": AddToken(TokenType.CONTINUE); break;
+                case "def": AddToken(TokenType.DEF); break;
+                case "return": AddToken(TokenType.RETURN); break;
                 default:
                     AddToken(TokenType.WORD, word); break;
             }

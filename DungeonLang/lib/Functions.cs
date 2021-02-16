@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.lib
 {
+    public delegate IValue Function(params IValue[] args);
+
     public sealed class Functions
     {
-        public delegate IValue Function(params IValue[] args);
         private static readonly Dictionary<string, Function> _functions;
         
         static Functions()

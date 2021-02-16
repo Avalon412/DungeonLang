@@ -1,4 +1,5 @@
 ﻿using DungeonLang.lib;
+using NPOI.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,22 @@ namespace DungeonLang.Parser.AST
             {
                 values[i] = _arguments[i].Evaluate();
             }
-            return Functions.GetFunction(_name).Invoke(values);
+            Function function = Functions.GetFunction(_name);
+            if (function.Target is UserDefinedFunction)
+            {
+                var invokeInstance = function.Target as UserDefinedFunction;
+                if (size != invokeInstance.GetArgsCount()) throw new RuntimeException("Args count mismatch");
+
+                Variables.Push();
+                for (int i = 0; i < size; i++)
+                {
+                    Variables.Set(invokeInstance.GetArgNames(i), values[i]);
+                }
+                IValue result = function.Invoke(values);
+                Variables.Pop();
+                return result;
+            }
+            return function.Invoke(values);
         }
 
         public override string ToString()

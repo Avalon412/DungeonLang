@@ -22,6 +22,8 @@ namespace DungeonLang.Parser
         DO,
         BREAK,
         CONTINUE,
+        DEF,
+        RETURN,
 
         PLUS,
         MINUS,
