@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class PrintStatement : Statement
+    public sealed class PrintStatement : IStatement
     {
-        public readonly Expression _expression;
+        public readonly IExpression _expression;
 
-        public PrintStatement(Expression expression)
+        public PrintStatement(IExpression expression)
         {
             this._expression = expression;
         }

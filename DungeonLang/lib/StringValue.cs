@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.lib
 {
-    public sealed class StringValue : Value
+    public sealed class StringValue : IValue
     {
         private readonly string _value;
 

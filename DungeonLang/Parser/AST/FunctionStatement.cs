@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class FunctionStatement : Statement
+    public sealed class FunctionStatement : IStatement
     {
         private readonly FunctionalExpression _function;
 

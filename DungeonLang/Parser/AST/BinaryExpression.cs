@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class BinaryExpression : Expression
+    public sealed class BinaryExpression : IExpression
     {
-        private readonly Expression _expr1;
-        private readonly Expression _expr2;
+        private readonly IExpression _expr1;
+        private readonly IExpression _expr2;
         private readonly char _operation;
 
-        public BinaryExpression(char operation, Expression expr1, Expression expr2)
+        public BinaryExpression(char operation, IExpression expr1, IExpression expr2)
         {
             this._operation = operation;
             this._expr1 = expr1;
             this._expr2 = expr2;
         }
 
-        public Value Evaluate()
+        public IValue Evaluate()
         {
-            Value value1 = _expr1.Evaluate();
-            Value value2 = _expr2.Evaluate();
+            IValue value1 = _expr1.Evaluate();
+            IValue value2 = _expr2.Evaluate();
             if (value1 is StringValue)
             {
                 string string1 = value1.AsString();

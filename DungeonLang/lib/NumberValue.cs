@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.lib
 {
-    public sealed class NumberValue : Value
+    public sealed class NumberValue : IValue
     {
         private readonly double _value;
+        public static readonly NumberValue ZERO = new NumberValue(0);
 
         public NumberValue(double value)
         {

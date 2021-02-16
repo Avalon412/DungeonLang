@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class DoWhileStatement : Statement
+    public sealed class DoWhileStatement : IStatement
     {
-        private readonly Expression _condition;
-        private readonly Statement _statement;
+        private readonly IExpression _condition;
+        private readonly IStatement _statement;
 
-        public DoWhileStatement(Expression condition, Statement statement)
+        public DoWhileStatement(IExpression condition, IStatement statement)
         {
             this._condition = condition;
             this._statement = statement;

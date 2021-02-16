@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class VariableExpression : Expression
+    public sealed class VariableExpression : IExpression
     {
         private readonly string _name;
 
@@ -17,7 +17,7 @@ namespace DungeonLang.Parser.AST
             this._name = name;
         }
 
-        public Value Evaluate()
+        public IValue Evaluate()
         {
             if (!Variables.IsExist(_name)) throw new RuntimeException("Constant does not exist");
             return Variables.Get(_name);

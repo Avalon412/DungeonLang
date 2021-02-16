@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class ValueExpression : Expression
+    public sealed class ValueExpression : IExpression
     {
-        private readonly Value _value;
+        private readonly IValue _value;
 
         public ValueExpression(double value)
         {
@@ -21,7 +21,7 @@ namespace DungeonLang.Parser.AST
             this._value = new StringValue(value);
         }
 
-        public Value Evaluate()
+        public IValue Evaluate()
         {
             return _value;
         }

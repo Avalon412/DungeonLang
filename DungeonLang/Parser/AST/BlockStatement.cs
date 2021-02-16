@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class BlockStatement : Statement
+    public sealed class BlockStatement : IStatement
     {
-        private readonly List<Statement> _statements;
+        private readonly List<IStatement> _statements;
 
         public BlockStatement()
         {
-            this._statements = new List<Statement>();
+            this._statements = new List<IStatement>();
         }
 
-        public void Add(Statement statement)
+        public void Add(IStatement statement)
         {
             _statements.Add(statement);
         }

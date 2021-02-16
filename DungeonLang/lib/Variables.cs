@@ -8,12 +8,11 @@ namespace DungeonLang.lib
 {
     public sealed class Variables
     {
-        private static readonly NumberValue ZERO = new NumberValue(0);
-        private static readonly Dictionary<string, Value> _variables;
+        private static readonly Dictionary<string, IValue> _variables;
 
         static Variables()
         {
-            _variables = new Dictionary<string, Value>();
+            _variables = new Dictionary<string, IValue>();
             _variables.Add("PI", new NumberValue(Math.PI));
             _variables.Add("ПИ", new NumberValue(Math.PI));
             _variables.Add("E", new NumberValue(Math.E));
@@ -25,15 +24,15 @@ namespace DungeonLang.lib
             return _variables.ContainsKey(key);
         }
 
-        public static Value Get(string key)
+        public static IValue Get(string key)
         {
-            if (!IsExist(key)) return ZERO;
-            Value value;
+            if (!IsExist(key)) return NumberValue.ZERO;
+            IValue value;
             _variables.TryGetValue(key, out value);
             return value;
         }
 
-        public static void Set(string key, Value value)
+        public static void Set(string key, IValue value)
         {
             _variables[key] = value;
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class ConditionalExpression : Expression
+    public sealed class ConditionalExpression : IExpression
     {
         public enum Operator
         {
@@ -28,22 +28,22 @@ namespace DungeonLang.Parser.AST
             OR
         }
 
-        private readonly Expression _expression1;
-        private readonly Expression _expression2;
+        private readonly IExpression _expression1;
+        private readonly IExpression _expression2;
         private readonly Operator _operation;
         private string _operator;
 
-        public ConditionalExpression(Operator operation, Expression expression1, Expression expression2)
+        public ConditionalExpression(Operator operation, IExpression expression1, IExpression expression2)
         {
             this._expression1 = expression1;
             this._expression2 = expression2;
             this._operation = operation;
         }
 
-        public Value Evaluate()
+        public IValue Evaluate()
         {
-            Value value1 = _expression1.Evaluate();
-            Value value2 = _expression2.Evaluate();
+            IValue value1 = _expression1.Evaluate();
+            IValue value2 = _expression2.Evaluate();
 
             double number1;
             double number2;

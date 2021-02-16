@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonLang.lib
+namespace DungeonLang.Parser.AST
 {
-    public interface Value
+    public interface IStatement
     {
-        double AsNumber();
-        string AsString();
+        void Execute();
     }
 }

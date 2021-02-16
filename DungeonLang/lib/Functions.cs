@@ -9,9 +9,8 @@ namespace DungeonLang.lib
 {
     public sealed class Functions
     {
-        public delegate Value Function(params Value[] args);
+        public delegate IValue Function(params IValue[] args);
         private static readonly Dictionary<string, Function> _functions;
-        private static readonly NumberValue ZERO = new NumberValue(0);
         
         static Functions()
         {
@@ -28,11 +27,11 @@ namespace DungeonLang.lib
             });
             _functions.Add("echo", args =>
             {
-                foreach (Value arg in args)
+                foreach (IValue arg in args)
                 {
                     Console.WriteLine(arg.AsString());
                 }
-                return ZERO;
+                return NumberValue.ZERO;
             });
         }
 

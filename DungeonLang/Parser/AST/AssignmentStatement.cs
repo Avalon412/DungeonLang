@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class AssignmentStatement : Statement
+    public sealed class AssignmentStatement : IStatement
     {
         private readonly string _variable;
-        private readonly Expression _expression;
+        private readonly IExpression _expression;
 
-        public AssignmentStatement(string variable, Expression expression)
+        public AssignmentStatement(string variable, IExpression expression)
         {
             this._variable = variable;
             this._expression = expression;
@@ -20,7 +20,7 @@ namespace DungeonLang.Parser.AST
 
         public void Execute()
         {
-            Value result = _expression.Evaluate();
+            IValue result = _expression.Evaluate();
             Variables.Set(_variable, result);
         }
 

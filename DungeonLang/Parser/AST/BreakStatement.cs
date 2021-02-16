@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class BreakStatement : RuntimeException, Statement
+    public sealed class BreakStatement : RuntimeException, IStatement
     {
         public void Execute()
         {

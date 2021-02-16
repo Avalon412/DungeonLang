@@ -23,7 +23,7 @@ namespace DungeonLang
                 Console.WriteLine(token);
             }
 
-            Statement program = new RDParser(tokens).Parse();
+            IStatement program = new RDParser(tokens).Parse();
             Console.WriteLine(program.ToString());
             program.Execute();
             Console.ReadKey();

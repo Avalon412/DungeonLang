@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class IfStatement : Statement
+    public sealed class IfStatement : IStatement
     {
-        private readonly Expression _expression;
-        private readonly Statement _ifStatement;
-        private readonly Statement _elseStatement;
+        private readonly IExpression _expression;
+        private readonly IStatement _ifStatement;
+        private readonly IStatement _elseStatement;
 
-        public IfStatement(Expression expression, Statement ifStatement, Statement elseStatement)
+        public IfStatement(IExpression expression, IStatement ifStatement, IStatement elseStatement)
         {
             this._expression = expression;
             this._ifStatement = ifStatement;

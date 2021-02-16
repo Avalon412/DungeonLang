@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class UnaryExpression : Expression
+    public sealed class UnaryExpression : IExpression
     {
-        private readonly Expression _expr1;
+        private readonly IExpression _expr1;
         private readonly char _operation;
 
-        public UnaryExpression(char operation, Expression expr)
+        public UnaryExpression(char operation, IExpression expr)
         {
             this._operation = operation;
             this._expr1 = expr;
         }
 
-        public Value Evaluate()
+        public IValue Evaluate()
         {
             switch (_operation)
             {

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public sealed class ForStatement : Statement
+    public sealed class ForStatement : IStatement
     {
-        private readonly Statement _initialization;
-        private readonly Expression _termination;
-        private readonly Statement _increment;
-        private readonly Statement _statement;
+        private readonly IStatement _initialization;
+        private readonly IExpression _termination;
+        private readonly IStatement _increment;
+        private readonly IStatement _statement;
 
-        public ForStatement(Statement initialization, Expression termination, Statement increment, Statement statement)
+        public ForStatement(IStatement initialization, IExpression termination, IStatement increment, IStatement statement)
         {
             this._initialization = initialization;
             this._termination = termination;

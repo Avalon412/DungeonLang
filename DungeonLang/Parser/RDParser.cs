@@ -21,7 +21,7 @@ namespace DungeonLang.Parser
             this._size = tokens.Count;
         }
 
-        public Statement Parse() // Рекурсивный спуск
+        public IStatement Parse() // Рекурсивный спуск
         {
             BlockStatement result = new BlockStatement();
             while (!IsMatch(TokenType.EOF))
@@ -31,7 +31,7 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private Statement Block()
+        private IStatement Block()
         {
             BlockStatement block = new BlockStatement();
             Consume(TokenType.LBRACE);
@@ -42,13 +42,13 @@ namespace DungeonLang.Parser
             return block;
         }
 
-        private Statement StatementOrBlock()
+        private IStatement StatementOrBlock()
         {
             if (GetToken(0).Type == TokenType.LBRACE) return Block();
             return StatementParse();
         }
 
-        private Statement StatementParse()
+        private IStatement StatementParse()
         {
             if (IsMatch(TokenType.PRINT))
             {
@@ -85,7 +85,7 @@ namespace DungeonLang.Parser
             return AssignmentStatement();
         }
 
-        private Statement AssignmentStatement()
+        private IStatement AssignmentStatement()
         {
             Token current = GetToken(0);
             if (IsMatch(TokenType.WORD) && GetToken(0).Type == TokenType.EQ)
@@ -105,11 +105,11 @@ namespace DungeonLang.Parser
             return current;
         }
 
-        private Statement IfElse()
+        private IStatement IfElse()
         {
-            Expression condition = ExpressionParse();
-            Statement ifStatement = StatementOrBlock();
-            Statement elseStatement;
+            IExpression condition = ExpressionParse();
+            IStatement ifStatement = StatementOrBlock();
+            IStatement elseStatement;
             if (IsMatch(TokenType.ELSE))
             {
                 elseStatement = StatementOrBlock();
@@ -121,29 +121,29 @@ namespace DungeonLang.Parser
             return new IfStatement(condition, ifStatement, elseStatement);
         }
 
-        private Statement WhileStatement()
+        private IStatement WhileStatement()
         {
-            Expression condition = ExpressionParse();
-            Statement statement = StatementOrBlock();
+            IExpression condition = ExpressionParse();
+            IStatement statement = StatementOrBlock();
             return new WhileStatement(condition, statement);
         }
 
-        private Statement DoWhileStatement()
+        private IStatement DoWhileStatement()
         {
-            Statement statement = StatementOrBlock();
+            IStatement statement = StatementOrBlock();
             Consume(TokenType.WHILE);
-            Expression condition = ExpressionParse();
+            IExpression condition = ExpressionParse();
             return new DoWhileStatement(condition, statement);
         }
 
-        public Statement ForStatement()
+        public IStatement ForStatement()
         {
-            Statement initialization = AssignmentStatement();
+            IStatement initialization = AssignmentStatement();
             Consume(TokenType.COMMA);
-            Expression termination = ExpressionParse();
+            IExpression termination = ExpressionParse();
             Consume(TokenType.COMMA);
-            Statement increment = AssignmentStatement();
-            Statement statement = StatementOrBlock();
+            IStatement increment = AssignmentStatement();
+            IStatement statement = StatementOrBlock();
             return new ForStatement(initialization, termination, increment, statement);
         }
 
@@ -160,14 +160,14 @@ namespace DungeonLang.Parser
             return function;
         }
 
-        private AST.Expression ExpressionParse()
+        private AST.IExpression ExpressionParse()
         {
             return LogicOr();
         }
 
-        private AST.Expression LogicOr()
+        private AST.IExpression LogicOr()
         {
-            Expression result = LogicAnd();
+            IExpression result = LogicAnd();
 
             while (true)
             {
@@ -181,9 +181,9 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression LogicAnd()
+        private AST.IExpression LogicAnd()
         {
-            Expression result = Equality();
+            IExpression result = Equality();
 
             while (true)
             {
@@ -197,9 +197,9 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression Equality()
+        private AST.IExpression Equality()
         {
-            Expression result = Conditional();
+            IExpression result = Conditional();
 
             if (IsMatch(TokenType.EQEQ))
             {
@@ -212,9 +212,9 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression Conditional()
+        private AST.IExpression Conditional()
         {
-            Expression result = Additive();
+            IExpression result = Additive();
 
             while (true)
             {
@@ -243,9 +243,9 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression Additive()
+        private AST.IExpression Additive()
         {
-            AST.Expression result = Multiplicative();
+            AST.IExpression result = Multiplicative();
 
             while (true)
             {
@@ -265,9 +265,9 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression Multiplicative()
+        private AST.IExpression Multiplicative()
         {
-            AST.Expression result = Unary();
+            AST.IExpression result = Unary();
             while (true)
             {
                 if (IsMatch(TokenType.STAR))
@@ -285,7 +285,7 @@ namespace DungeonLang.Parser
             return result;
         }
 
-        private AST.Expression Unary()
+        private AST.IExpression Unary()
         {
             if (IsMatch(TokenType.MINUS))
             {
@@ -298,7 +298,7 @@ namespace DungeonLang.Parser
             return Primary();
         }
 
-        private AST.Expression Primary()
+        private AST.IExpression Primary()
         {
             Token current = GetToken(0);
             if (IsMatch(TokenType.NUMBER))
@@ -323,7 +323,7 @@ namespace DungeonLang.Parser
             }
             if (IsMatch(TokenType.LPAREN))
             {
-                Expression result = ExpressionParse();
+                IExpression result = ExpressionParse();
                 IsMatch(TokenType.RPAREN);
                 return result;
             }
