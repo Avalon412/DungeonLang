@@ -43,11 +43,13 @@ namespace DungeonLang.Parser
         BAR,
         BARBAR,
 
-        LPAREN,
-        RPAREN,
-        LBRACE,
-        RBRACE,
-        COMMA,
+        LPAREN,   // (
+        RPAREN,   // )
+        LBRACKET, // [
+        RBRACKET, // ]
+        LBRACE,   // {
+        RBRACE,   // }
+        COMMA,    // ,
 
         EOF
     }

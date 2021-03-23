@@ -19,7 +19,7 @@ namespace DungeonLang.Parser.AST
 
         public IValue Evaluate()
         {
-            if (!Variables.IsExist(_name)) throw new RuntimeException("Constant does not exist");
+            if (!Variables.IsExist(_name)) throw new RuntimeException("Variable does not exist");
             return Variables.Get(_name);
         }
 

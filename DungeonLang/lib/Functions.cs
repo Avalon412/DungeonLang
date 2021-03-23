@@ -34,6 +34,10 @@ namespace DungeonLang.lib
                 }
                 return NumberValue.ZERO;
             });
+            _functions.Add("newarray", args =>
+            {
+                return new ArrayValue(args);
+            });
         }
 
         public static bool IsExist(string key)

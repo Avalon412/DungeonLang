@@ -24,7 +24,7 @@ namespace DungeonLang.Parser.AST
         {
             IValue value1 = _expr1.Evaluate();
             IValue value2 = _expr2.Evaluate();
-            if (value1 is StringValue)
+            if (value1 is StringValue || value1 is ArrayValue)
             {
                 string string1 = value1.AsString();
                 switch(_operation)

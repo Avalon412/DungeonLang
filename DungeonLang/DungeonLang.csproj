@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lib\ArrayValue.cs" />
     <Compile Include="lib\Functions.cs" />
     <Compile Include="lib\IFunction.cs" />
     <Compile Include="lib\NumberValue.cs" />
@@ -68,6 +69,9 @@
     <Compile Include="lib\IValue.cs" />
     <Compile Include="lib\UserDefinedFunction.cs" />
     <Compile Include="lib\Variables.cs" />
+    <Compile Include="Parser\AST\ArrayAccessExpression.cs" />
+    <Compile Include="Parser\AST\ArrayAssignmentStatement.cs" />
+    <Compile Include="Parser\AST\ArrayExpression.cs" />
     <Compile Include="Parser\AST\AssignmentStatement.cs" />
     <Compile Include="Parser\AST\BinaryExpression.cs" />
     <Compile Include="Parser\AST\BlockStatement.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\IStatement.cs" />
     <Compile Include="Parser\AST\ReturnStatement.cs" />
+    <Compile Include="Parser\AST\RuntimeExpression.cs" />
     <Compile Include="Parser\AST\ValueExpression.cs" />
     <Compile Include="Parser\AST\VariableExpression.cs" />
     <Compile Include="Parser\AST\IExpression.cs" />
