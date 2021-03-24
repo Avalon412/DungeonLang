@@ -103,12 +103,9 @@ namespace DungeonLang.Parser
             }
             if (IsMatchToken(0, TokenType.WORD) && IsMatchToken(1, TokenType.LBRACKET))
             {
-                string variable = Consume(TokenType.WORD).Text;
-                Consume(TokenType.LBRACKET);
-                IExpression index = ExpressionParse();
-                Consume(TokenType.RBRACKET);
+                ArrayAccessExpression array = Element();
                 Consume(TokenType.EQ);
-                return new ArrayAssignmentStatement(variable, index, ExpressionParse());
+                return new ArrayAssignmentStatement(array, ExpressionParse());
             }
             throw new RuntimeException("Unknown statement");
         }
@@ -202,13 +199,17 @@ namespace DungeonLang.Parser
             return new ArrayExpression(elements);
         }
 
-        private IExpression Element()
+        private ArrayAccessExpression Element()
         {
             string variable = Consume(TokenType.WORD).Text;
-            Consume(TokenType.LBRACKET);
-            IExpression index = ExpressionParse();
-            Consume(TokenType.RBRACKET);
-            return new ArrayAccessExpression(variable, index);
+            List<IExpression> indices = new List<IExpression>();
+            do
+            {
+                Consume(TokenType.LBRACKET);
+                indices.Add(ExpressionParse());
+                Consume(TokenType.RBRACKET);
+            } while (IsMatchToken(0, TokenType.LBRACKET));
+            return new ArrayAccessExpression(variable, indices);
         }
 
         private AST.IExpression ExpressionParse()

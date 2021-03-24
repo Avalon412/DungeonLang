@@ -36,8 +36,30 @@ namespace DungeonLang.lib
             });
             _functions.Add("newarray", args =>
             {
-                return new ArrayValue(args);
+                return CreateArray(args, 0);
             });
+        }
+
+        private static ArrayValue CreateArray(IValue[] args, int index)
+        {
+            int size = (int)args[index].AsNumber();
+            int last = args.Length - 1;
+            ArrayValue array = new ArrayValue(size);
+            if (index == last)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    array.Set(i, NumberValue.ZERO);
+                }
+            }
+            else if (index < last)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    array.Set(i, CreateArray(args, index + 1));
+                }
+            }
+            return array;
         }
 
         public static bool IsExist(string key)

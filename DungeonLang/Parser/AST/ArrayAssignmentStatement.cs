@@ -9,34 +9,23 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ArrayAssignmentStatement : IStatement
     {
-        private readonly string _variable;
-        private readonly IExpression _index;
         private readonly IExpression _expression;
+        private readonly ArrayAccessExpression _array;
 
-        public ArrayAssignmentStatement(string variable, IExpression index, IExpression expression)
+        public ArrayAssignmentStatement(ArrayAccessExpression array, IExpression expression)
         {
-            this._variable = variable;
-            this._index = index;
             this._expression = expression;
+            this._array = array;
         }
 
         public void Execute()
         {
-            IValue variable = Variables.Get(_variable);
-            if (variable is ArrayValue)
-            {
-                ArrayValue array = (ArrayValue)variable;
-                array.Set((int)_index.Evaluate().AsNumber(), _expression.Evaluate());
-            }
-            else
-            {
-                throw new RuntimeExpression("Array expected");
-            }
+            _array.GetArray().Set(_array.LastIndex(), _expression.Evaluate());
         }
 
         public override string ToString()
         {
-            return $"{_variable}[{_index}] = {_expression}";
+            return $"{_array} = {_expression}";
         }
     }
 }

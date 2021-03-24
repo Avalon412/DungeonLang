@@ -10,21 +10,45 @@ namespace DungeonLang.Parser.AST
     public sealed class ArrayAccessExpression : IExpression
     {
         private readonly string _variable;
-        private readonly IExpression _index;
+        private readonly List<IExpression> _indices;
 
-        public ArrayAccessExpression(string variable, IExpression index)
+        public ArrayAccessExpression(string variable, List<IExpression> indices)
         {
             this._variable = variable;
-            this._index = index;
+            this._indices = indices;
         }
 
         public IValue Evaluate()
         {
-            IValue var = Variables.Get(_variable);
-            if (var is ArrayValue)
+            return GetArray().Get(LastIndex());
+        }
+
+        public ArrayValue GetArray()
+        {
+            ArrayValue array = ConsumeArray(Variables.Get(_variable));
+            int last = _indices.Count - 1;
+            for (int i = 0; i < last; i++)
             {
-                ArrayValue array = (ArrayValue)var;
-                return array.Get((int)_index.Evaluate().AsNumber());
+                array = ConsumeArray(array.Get(Index(i)));
+            }
+            return array;
+        }
+
+        private int Index(int index)
+        {
+            return (int)_indices[index].Evaluate().AsNumber();
+        }
+
+        public int LastIndex()
+        {
+            return Index(_indices.Count - 1);
+        }
+
+        private ArrayValue ConsumeArray(IValue value)
+        {
+            if (value is ArrayValue)
+            {
+                return (ArrayValue)value;
             }
             else
             {
@@ -34,7 +58,7 @@ namespace DungeonLang.Parser.AST
 
         public override string ToString()
         {
-            return $"{_variable}[{_index}]";
+            return _variable + _indices;
         }
     }
 }
