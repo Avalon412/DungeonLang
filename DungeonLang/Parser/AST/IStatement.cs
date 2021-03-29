@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public interface IStatement
+    public interface IStatement : INode
     {
         void Execute();
     }

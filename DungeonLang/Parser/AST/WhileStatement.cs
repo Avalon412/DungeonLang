@@ -8,13 +8,18 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class WhileStatement : IStatement
     {
-        private readonly IExpression _condition;
-        private readonly IStatement _statement;
+        public readonly IExpression _condition;
+        public readonly IStatement _statement;
 
         public WhileStatement(IExpression condition, IStatement statement)
         {
             this._condition = condition;
             this._statement = statement;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public void Execute()

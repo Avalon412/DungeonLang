@@ -1,5 +1,4 @@
-﻿using DungeonLang.lib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonLang.Parser.AST
 {
-    public interface IExpression : INode
+    public interface INode
     {
-        IValue Evaluate();
+        void Accept(IVisitor visitor);
     }
 }

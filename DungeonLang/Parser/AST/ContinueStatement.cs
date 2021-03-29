@@ -9,6 +9,11 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ContinueStatement : RuntimeException, IStatement
     {
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         public void Execute()
         {
             throw this;

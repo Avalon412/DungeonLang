@@ -1,4 +1,5 @@
 ﻿using DungeonLang.lib;
+using NPOI.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ArrayAccessExpression : IExpression
     {
-        private readonly string _variable;
-        private readonly List<IExpression> _indices;
+        public readonly string _variable;
+        public readonly List<IExpression> _indices;
 
         public ArrayAccessExpression(string variable, List<IExpression> indices)
         {
@@ -21,6 +22,11 @@ namespace DungeonLang.Parser.AST
         public IValue Evaluate()
         {
             return GetArray().Get(LastIndex());
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public ArrayValue GetArray()
@@ -52,7 +58,7 @@ namespace DungeonLang.Parser.AST
             }
             else
             {
-                throw new RuntimeExpression("Array expected");
+                throw new RuntimeException("Array expected");
             }
         }
 

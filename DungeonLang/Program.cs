@@ -1,6 +1,7 @@
 ﻿using DungeonLang.lib;
 using DungeonLang.Parser;
 using DungeonLang.Parser.AST;
+using DungeonLang.Parser.visitors;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace DungeonLang
         static void Main(string[] args)
         {
             string input;
-            using (var sr = new StreamReader("program.own", Encoding.UTF8))
+            using (var sr = new StreamReader("visitor.own", Encoding.UTF8))
             {
                 input = sr.ReadToEnd();
             }
@@ -25,6 +26,9 @@ namespace DungeonLang
 
             IStatement program = new RDParser(tokens).Parse();
             Console.WriteLine(program.ToString());
+            program.Accept(new FunctionAdder());
+            program.Accept(new VariablePrinter());
+            program.Accept(new AssignValidator());
             program.Execute();
             Console.ReadKey();
         }

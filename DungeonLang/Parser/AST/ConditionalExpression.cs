@@ -28,16 +28,21 @@ namespace DungeonLang.Parser.AST
             OR
         }
 
-        private readonly IExpression _expression1;
-        private readonly IExpression _expression2;
-        private readonly Operator _operation;
-        private string _operator;
+        public readonly IExpression _expression1;
+        public readonly IExpression _expression2;
+        public readonly Operator _operation;
+        public string _operator;
 
         public ConditionalExpression(Operator operation, IExpression expression1, IExpression expression2)
         {
             this._expression1 = expression1;
             this._expression2 = expression2;
             this._operation = operation;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

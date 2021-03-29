@@ -8,11 +8,16 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class FunctionStatement : IStatement
     {
-        private readonly FunctionalExpression _function;
+        public readonly FunctionalExpression _function;
 
         public FunctionStatement(FunctionalExpression function)
         {
             this._function = function;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this); ;
         }
 
         public void Execute()

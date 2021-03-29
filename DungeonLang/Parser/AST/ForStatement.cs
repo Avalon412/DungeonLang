@@ -8,10 +8,10 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ForStatement : IStatement
     {
-        private readonly IStatement _initialization;
-        private readonly IExpression _termination;
-        private readonly IStatement _increment;
-        private readonly IStatement _statement;
+        public readonly IStatement _initialization;
+        public readonly IExpression _termination;
+        public readonly IStatement _increment;
+        public readonly IStatement _statement;
 
         public ForStatement(IStatement initialization, IExpression termination, IStatement increment, IStatement statement)
         {
@@ -38,6 +38,11 @@ namespace DungeonLang.Parser.AST
                     continue;
                 }
             }
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

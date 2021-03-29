@@ -10,11 +10,16 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class VariableExpression : IExpression
     {
-        private readonly string _name;
+        public readonly string _name;
 
         public VariableExpression(string name)
         {
             this._name = name;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

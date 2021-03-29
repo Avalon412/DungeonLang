@@ -84,6 +84,8 @@
     <Compile Include="Parser\AST\FunctionDefineStatement.cs" />
     <Compile Include="Parser\AST\FunctionStatement.cs" />
     <Compile Include="Parser\AST\IfStatement.cs" />
+    <Compile Include="Parser\AST\IVisitor.cs" />
+    <Compile Include="Parser\AST\INode.cs" />
     <Compile Include="Parser\AST\PrintStatement.cs" />
     <Compile Include="Parser\AST\IStatement.cs" />
     <Compile Include="Parser\AST\ReturnStatement.cs" />
@@ -97,6 +99,10 @@
     <Compile Include="Parser\RDParser.cs" />
     <Compile Include="Parser\Token.cs" />
     <Compile Include="Parser\TokenType.cs" />
+    <Compile Include="Parser\visitors\AbstractVisitor.cs" />
+    <Compile Include="Parser\visitors\AssignValidator.cs" />
+    <Compile Include="Parser\visitors\FunctionAdder.cs" />
+    <Compile Include="Parser\visitors\VariablePrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -104,5 +110,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

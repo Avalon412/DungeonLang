@@ -9,8 +9,8 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ArrayAssignmentStatement : IStatement
     {
-        private readonly IExpression _expression;
-        private readonly ArrayAccessExpression _array;
+        public readonly IExpression _expression;
+        public readonly ArrayAccessExpression _array;
 
         public ArrayAssignmentStatement(ArrayAccessExpression array, IExpression expression)
         {
@@ -21,6 +21,11 @@ namespace DungeonLang.Parser.AST
         public void Execute()
         {
             _array.GetArray().Set(_array.LastIndex(), _expression.Evaluate());
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

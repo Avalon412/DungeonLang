@@ -9,9 +9,9 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class FunctionDefineStatement : IStatement
     {
-        private readonly string _name;
-        private readonly List<string> _argNames;
-        private readonly IStatement _body;
+        public readonly string _name;
+        public readonly List<string> _argNames;
+        public readonly IStatement _body;
 
         public FunctionDefineStatement(string name, List<string> argNames, IStatement body)
         {
@@ -23,6 +23,11 @@ namespace DungeonLang.Parser.AST
         public void Execute()
         {
             Functions.SetFunction(_name, new UserDefinedFunction(_argNames, _body).Execute);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

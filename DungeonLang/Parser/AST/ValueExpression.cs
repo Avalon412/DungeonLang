@@ -9,7 +9,7 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ValueExpression : IExpression
     {
-        private readonly IValue _value;
+        public readonly IValue _value;
 
         public ValueExpression(double value)
         {
@@ -19,6 +19,11 @@ namespace DungeonLang.Parser.AST
         public ValueExpression(string value)
         {
             this._value = new StringValue(value);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

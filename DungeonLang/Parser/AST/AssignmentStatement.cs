@@ -9,13 +9,18 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class AssignmentStatement : IStatement
     {
-        private readonly string _variable;
-        private readonly IExpression _expression;
+        public readonly string _variable;
+        public readonly IExpression _expression;
 
         public AssignmentStatement(string variable, IExpression expression)
         {
             this._variable = variable;
             this._expression = expression;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public void Execute()

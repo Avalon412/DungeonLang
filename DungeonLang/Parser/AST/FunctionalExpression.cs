@@ -10,8 +10,8 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class FunctionalExpression : IExpression
     {
-        private readonly string _name;
-        private readonly List<IExpression> _arguments;
+        public readonly string _name;
+        public readonly List<IExpression> _arguments;
 
         public FunctionalExpression(string name)
         {
@@ -28,6 +28,11 @@ namespace DungeonLang.Parser.AST
         public void AddArgument(IExpression arg)
         {
             _arguments.Add(arg);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

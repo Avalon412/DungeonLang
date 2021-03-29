@@ -15,6 +15,11 @@ namespace DungeonLang.Parser.AST
             this._expression = expression;
         }
 
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         public void Execute()
         {
             Console.WriteLine(_expression.Evaluate());

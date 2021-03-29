@@ -9,7 +9,7 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ArrayExpression : IExpression
     {
-        private readonly List<IExpression> _elements;
+        public readonly List<IExpression> _elements;
 
         public ArrayExpression(List<IExpression> arguments)
         {
@@ -25,6 +25,11 @@ namespace DungeonLang.Parser.AST
                 array.Set(i, _elements[i].Evaluate());
             }
             return array;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

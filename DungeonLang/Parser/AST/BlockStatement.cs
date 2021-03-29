@@ -8,7 +8,7 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class BlockStatement : IStatement
     {
-        private readonly List<IStatement> _statements;
+        public readonly List<IStatement> _statements;
 
         public BlockStatement()
         {
@@ -18,6 +18,11 @@ namespace DungeonLang.Parser.AST
         public void Add(IStatement statement)
         {
             _statements.Add(statement);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public void Execute()

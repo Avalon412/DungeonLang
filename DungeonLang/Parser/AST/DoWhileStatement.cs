@@ -8,8 +8,8 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class DoWhileStatement : IStatement
     {
-        private readonly IExpression _condition;
-        private readonly IStatement _statement;
+        public readonly IExpression _condition;
+        public readonly IStatement _statement;
 
         public DoWhileStatement(IExpression condition, IStatement statement)
         {
@@ -34,6 +34,11 @@ namespace DungeonLang.Parser.AST
                     continue;
                 }
             } while (_condition.Evaluate().AsNumber() != 0);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

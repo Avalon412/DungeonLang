@@ -9,15 +9,20 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class BinaryExpression : IExpression
     {
-        private readonly IExpression _expr1;
-        private readonly IExpression _expr2;
-        private readonly char _operation;
+        public readonly IExpression _expr1;
+        public readonly IExpression _expr2;
+        public readonly char _operation;
 
         public BinaryExpression(char operation, IExpression expr1, IExpression expr2)
         {
             this._operation = operation;
             this._expr1 = expr1;
             this._expr2 = expr2;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

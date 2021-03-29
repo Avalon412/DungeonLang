@@ -11,12 +11,17 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class ReturnStatement : RuntimeException, IStatement
     {
-        private readonly IExpression _expression;
-        private IValue _result;
+        public readonly IExpression _expression;
+        public IValue _result;
 
         public ReturnStatement(IExpression expression)
         {
             this._expression = expression;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public void Execute()

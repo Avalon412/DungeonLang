@@ -9,13 +9,18 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class UnaryExpression : IExpression
     {
-        private readonly IExpression _expr1;
-        private readonly char _operation;
+        public readonly IExpression _expr1;
+        public readonly char _operation;
 
         public UnaryExpression(char operation, IExpression expr)
         {
             this._operation = operation;
             this._expr1 = expr;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public IValue Evaluate()

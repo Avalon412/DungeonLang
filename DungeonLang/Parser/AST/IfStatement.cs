@@ -8,15 +8,20 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class IfStatement : IStatement
     {
-        private readonly IExpression _expression;
-        private readonly IStatement _ifStatement;
-        private readonly IStatement _elseStatement;
+        public readonly IExpression _expression;
+        public readonly IStatement _ifStatement;
+        public readonly IStatement _elseStatement;
 
         public IfStatement(IExpression expression, IStatement ifStatement, IStatement elseStatement)
         {
             this._expression = expression;
             this._ifStatement = ifStatement;
             this._elseStatement = elseStatement;
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public void Execute()
