@@ -11,11 +11,32 @@ namespace DungeonLang.lib.modules
     {
         public void Init()
         {
-            Functions.SetFunction("echo", args =>
+            Functions.SetFunction("echonl", args =>
             {
                 foreach (IValue arg in args)
                 {
                     Console.WriteLine(arg.AsString());
+                }
+                return NumberValue.ZERO;
+            });
+            Functions.SetFunction("echo", args =>
+            {
+                foreach (IValue arg in args)
+                {
+                    Console.Write(arg.AsString());
+                }
+                return NumberValue.ZERO;
+            });
+            Functions.SetFunction("cls", args =>
+            {
+                Console.Clear();
+                return NumberValue.ZERO;
+            });
+            Functions.SetFunction("padd", args =>
+            {
+                if (args.Length == 1)
+                {
+                    return new StringValue("".PadLeft((int)args[0].AsNumber()));
                 }
                 return NumberValue.ZERO;
             });
