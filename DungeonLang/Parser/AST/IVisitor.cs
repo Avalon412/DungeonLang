@@ -29,5 +29,6 @@ namespace DungeonLang.Parser.AST
         void Visit(ValueExpression s);
         void Visit(VariableExpression s);
         void Visit(WhileStatement s);
+        void Visit(UseStatement s);
     }
 }

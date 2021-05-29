@@ -14,7 +14,7 @@ namespace DungeonLang
         static void Main(string[] args)
         {
             string input;
-            using (var sr = new StreamReader("visitor.own", Encoding.UTF8))
+            using (var sr = new StreamReader("program.own", Encoding.UTF8))
             {
                 input = sr.ReadToEnd();
             }

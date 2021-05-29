@@ -136,5 +136,10 @@ namespace DungeonLang.Parser.visitors
             s._condition.Accept(this);
             s._statement.Accept(this);
         }
+
+        public void Visit(UseStatement s)
+        {
+            s._expression.Accept(this);
+        }
     }
 }

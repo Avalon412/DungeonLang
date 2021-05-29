@@ -64,6 +64,9 @@
     <Compile Include="lib\ArrayValue.cs" />
     <Compile Include="lib\Functions.cs" />
     <Compile Include="lib\IFunction.cs" />
+    <Compile Include="lib\modules\IModule.cs" />
+    <Compile Include="lib\modules\math.cs" />
+    <Compile Include="lib\modules\std.cs" />
     <Compile Include="lib\NumberValue.cs" />
     <Compile Include="lib\StringValue.cs" />
     <Compile Include="lib\IValue.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Parser\AST\IStatement.cs" />
     <Compile Include="Parser\AST\ReturnStatement.cs" />
     <Compile Include="Parser\AST\RuntimeExpression.cs" />
+    <Compile Include="Parser\AST\UseStatement.cs" />
     <Compile Include="Parser\AST\ValueExpression.cs" />
     <Compile Include="Parser\AST\VariableExpression.cs" />
     <Compile Include="Parser\AST\IExpression.cs" />

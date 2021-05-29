@@ -82,6 +82,10 @@ namespace DungeonLang.Parser
             {
                 return new ReturnStatement(ExpressionParse());
             }
+            if (IsMatch(TokenType.USE))
+            {
+                return new UseStatement(ExpressionParse());
+            }
             if (IsMatch(TokenType.DEF))
             {
                 return FunctionDefine();

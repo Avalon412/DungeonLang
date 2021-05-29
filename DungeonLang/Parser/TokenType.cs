@@ -24,6 +24,7 @@ namespace DungeonLang.Parser
         CONTINUE,
         DEF,
         RETURN,
+        USE,
 
         PLUS,
         MINUS,

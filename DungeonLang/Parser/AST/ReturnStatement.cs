@@ -37,7 +37,7 @@ namespace DungeonLang.Parser.AST
 
         public override string ToString()
         {
-            return "return";
+            return "return " + _expression;
         }
     }
 }
