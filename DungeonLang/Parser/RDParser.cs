@@ -218,7 +218,21 @@ namespace DungeonLang.Parser
 
         private AST.IExpression ExpressionParse()
         {
-            return LogicOr();
+            return Ternary();
+        }
+
+        private AST.IExpression Ternary()
+        {
+            IExpression result = LogicOr();
+
+            if (IsMatch(TokenType.QUESTION))
+            {
+                IExpression trueExpr = ExpressionParse();
+                Consume(TokenType.COLON);
+                IExpression falseExpr = ExpressionParse();
+                return new TernaryExpression(result, trueExpr, falseExpr);
+            }
+            return result;
         }
 
         private AST.IExpression LogicOr()

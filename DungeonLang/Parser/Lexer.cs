@@ -14,7 +14,7 @@ namespace DungeonLang.Parser
         private readonly int _length;
         private int _pos;
 
-        private static readonly string OPERATOR_CHARS = "+-*/%()[]{}=<>!&|,^~";
+        private static readonly string OPERATOR_CHARS = "+-*/%()[]{}=<>!&|,^~?:";
         private static readonly Dictionary<string, TokenType> OPERATORS;
 
         static Lexer()
@@ -37,6 +37,8 @@ namespace DungeonLang.Parser
             OPERATORS.Add(",", TokenType.COMMA);
             OPERATORS.Add("^", TokenType.CARET);
             OPERATORS.Add("~", TokenType.TILDE);
+            OPERATORS.Add("?", TokenType.QUESTION);
+            OPERATORS.Add(":", TokenType.COLON);
 
             OPERATORS.Add("!", TokenType.EXCL);
             OPERATORS.Add("&", TokenType.AMP);

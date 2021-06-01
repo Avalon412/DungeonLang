@@ -116,6 +116,13 @@ namespace DungeonLang.Parser.visitors
             s._expression.Accept(this);
         }
 
+        public void Visit(TernaryExpression s)
+        {
+            s._condition.Accept(this);
+            s._trueExpr.Accept(this);
+            s._falseExpr.Accept(this);
+        }
+
         public void Visit(UnaryExpression s)
         {
             s._expr1.Accept(this);

@@ -93,6 +93,7 @@
     <Compile Include="Parser\AST\IStatement.cs" />
     <Compile Include="Parser\AST\ReturnStatement.cs" />
     <Compile Include="Parser\AST\RuntimeExpression.cs" />
+    <Compile Include="Parser\AST\TernaryExpression.cs" />
     <Compile Include="Parser\AST\UseStatement.cs" />
     <Compile Include="Parser\AST\ValueExpression.cs" />
     <Compile Include="Parser\AST\VariableExpression.cs" />

@@ -25,6 +25,7 @@ namespace DungeonLang.Parser.AST
         void Visit(IfStatement s);
         void Visit(PrintStatement s);
         void Visit(ReturnStatement s);
+        void Visit(TernaryExpression s);
         void Visit(UnaryExpression s);
         void Visit(ValueExpression s);
         void Visit(VariableExpression s);

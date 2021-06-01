@@ -50,6 +50,9 @@ namespace DungeonLang.Parser
         BAR,      // |
         BARBAR,   // ||
 
+        QUESTION, // ?
+        COLON,    // :
+
         LPAREN,   // (
         RPAREN,   // )
         LBRACKET, // [
