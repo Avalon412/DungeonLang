@@ -1,4 +1,5 @@
 ﻿using DungeonLang.lib;
+using NPOI.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,27 @@ namespace DungeonLang.Parser.AST
 {
     public sealed class BinaryExpression : IExpression
     {
+        public enum Operator
+        {
+            ADD,
+            SUBSTRACT,
+            MULTIPLY,
+            DIVIDE,
+            REMINDER,
+            // Bitwise
+            AND,
+            OR,
+            XOR,
+            LSHIFT,
+            RSHIFT,
+        }
+
         public readonly IExpression _expr1;
         public readonly IExpression _expr2;
-        public readonly char _operation;
+        public readonly Operator _operation;
+        public string _operator;
 
-        public BinaryExpression(char operation, IExpression expr1, IExpression expr2)
+        public BinaryExpression(Operator operation, IExpression expr1, IExpression expr2)
         {
             this._operation = operation;
             this._expr1 = expr1;
@@ -34,8 +51,9 @@ namespace DungeonLang.Parser.AST
                 string string1 = value1.AsString();
                 switch(_operation)
                 {
-                    case '*':
+                    case Operator.MULTIPLY:
                         {
+                            _operator = "*";
                             int iterations = (int)value2.AsNumber();
                             StringBuilder builder = new StringBuilder();
                             for (int i = 0; i < iterations; i++)
@@ -44,28 +62,37 @@ namespace DungeonLang.Parser.AST
                             }
                             return new StringValue(builder.ToString());
                         }
-                    case '+':
+                    case Operator.ADD:
                     default:
-                        return new StringValue(string1 + value2.AsString());
+                        _operator = "+"; return new StringValue(string1 + value2.AsString());
                 }
             }
 
             double number1 = value1.AsNumber();
             double number2 = value2.AsNumber();
+            double result;
             switch (_operation)
             {
-                case '-': return new NumberValue(number1 - number2);
-                case '*': return new NumberValue(number1 * number2);
-                case '/': return new NumberValue(number1 / number2);
-                case '+':
+                case Operator.ADD: result = number1 + number2; break;
+                case Operator.SUBSTRACT: result = number1 - number2; break;
+                case Operator.MULTIPLY: result = number1 * number2; break;
+                case Operator.DIVIDE: result = number1 / number2; break;
+
+                //Bitwise
+                case Operator.AND: result = (int)number1 & (int)number2; break;
+                case Operator.XOR: result = (int)number1 ^ (int)number2; break;
+                case Operator.OR: result = (int)number1 | (int)number2; break;
+                case Operator.LSHIFT: result = (int)number1 << (int)number2; break;
+                case Operator.RSHIFT: result = (int)number1 >> (int)number2; break;
                 default:
-                    return new NumberValue(number1 + number2);
+                    throw new RuntimeException("Operation " + _operator + " is not supported");
             }
+            return new NumberValue(result);
         }
 
         public override string ToString()
         {
-            return $"{_expr1} {_operation} {_expr2}";
+            return $"{_expr1} {_operator} {_expr2}";
         }
     }
 }

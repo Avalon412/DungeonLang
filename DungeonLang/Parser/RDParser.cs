@@ -239,13 +239,61 @@ namespace DungeonLang.Parser
 
         private AST.IExpression LogicAnd()
         {
-            IExpression result = Equality();
+            IExpression result = BitwiseOr();
 
             while (true)
             {
                 if (IsMatch(TokenType.AMPAMP))
                 {
-                    result = new ConditionalExpression(ConditionalExpression.Operator.AND, result, Equality());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.AND, result, BitwiseOr());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.IExpression BitwiseOr()
+        {
+            IExpression result = BitwiseXor();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.BAR))
+                {
+                    result = new BinaryExpression(BinaryExpression.Operator.OR, result, BitwiseXor());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.IExpression BitwiseXor()
+        {
+            IExpression result = BitwiseAnd();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.CARET))
+                {
+                    result = new BinaryExpression(BinaryExpression.Operator.XOR, result, BitwiseAnd());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.IExpression BitwiseAnd()
+        {
+            IExpression result = Equality();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.AMP))
+                {
+                    result = new BinaryExpression(BinaryExpression.Operator.AND, result, Equality());
                     continue;
                 }
                 break;
@@ -270,28 +318,49 @@ namespace DungeonLang.Parser
 
         private AST.IExpression Conditional()
         {
-            IExpression result = Additive();
+            IExpression result = Shift();
 
             while (true)
             {
                 if (IsMatch(TokenType.LT))
                 {
-                    result = new ConditionalExpression(ConditionalExpression.Operator.LT, result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.LT, result, Shift());
                     continue;
                 }
                 if (IsMatch(TokenType.LTEQ))
                 {
-                    result = new ConditionalExpression(ConditionalExpression.Operator.LTEQ, result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.LTEQ, result, Shift());
                     continue;
                 }
                 if (IsMatch(TokenType.GT))
                 {
-                    result = new ConditionalExpression(ConditionalExpression.Operator.GT, result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.GT, result, Shift());
                     continue;
                 }
                 if (IsMatch(TokenType.GTEQ))
                 {
-                    result = new ConditionalExpression(ConditionalExpression.Operator.GTEQ, result, Additive());
+                    result = new ConditionalExpression(ConditionalExpression.Operator.GTEQ, result, Shift());
+                    continue;
+                }
+                break;
+            }
+            return result;
+        }
+
+        private AST.IExpression Shift()
+        {
+            AST.IExpression result = Additive();
+
+            while (true)
+            {
+                if (IsMatch(TokenType.LTLT))
+                {
+                    result = new BinaryExpression(BinaryExpression.Operator.LSHIFT, result, Additive());
+                    continue;
+                }
+                if (IsMatch(TokenType.GTGT))
+                {
+                    result = new BinaryExpression(BinaryExpression.Operator.RSHIFT, result, Additive());
                     continue;
                 }
                 break;
@@ -307,12 +376,12 @@ namespace DungeonLang.Parser
             {
                 if (IsMatch(TokenType.PLUS))
                 {
-                    result = new AST.BinaryExpression('+', result, Multiplicative());
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.ADD, result, Multiplicative());
                     continue;
                 }
                 if (IsMatch(TokenType.MINUS))
                 {
-                    result = new AST.BinaryExpression('-', result, Multiplicative());
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.SUBSTRACT, result, Multiplicative());
                     continue;
                 }
                 break;
@@ -328,12 +397,17 @@ namespace DungeonLang.Parser
             {
                 if (IsMatch(TokenType.STAR))
                 {
-                    result = new AST.BinaryExpression('*', result, Unary());
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.MULTIPLY, result, Unary());
                     continue;
                 }
                 if (IsMatch(TokenType.SLASH))
                 {
-                    result = new AST.BinaryExpression('/', result, Unary());
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.REMINDER, result, Unary());
+                    continue;
+                }
+                if (IsMatch(TokenType.PERCENT))
+                {
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.REMINDER, result, Unary());
                     continue;
                 }
                 break;
@@ -345,7 +419,15 @@ namespace DungeonLang.Parser
         {
             if (IsMatch(TokenType.MINUS))
             {
-                return new UnaryExpression('-', Primary());
+                return new UnaryExpression(UnaryExpression.Operator.NEGATE, Primary());
+            }
+            if (IsMatch(TokenType.EXCL))
+            {
+                return new UnaryExpression(UnaryExpression.Operator.NOT, Primary());
+            }
+            if (IsMatch(TokenType.TILDE))
+            {
+                return new UnaryExpression(UnaryExpression.Operator.COMPLEMENT, Primary());
             }
             if (IsMatch(TokenType.PLUS))
             {

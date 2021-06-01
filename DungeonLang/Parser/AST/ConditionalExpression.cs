@@ -11,11 +11,6 @@ namespace DungeonLang.Parser.AST
     {
         public enum Operator
         {
-            PLUS,
-            MINUS,
-            MULTIPLY,
-            DIVIDE,
-
             EQUALS,
             NOT_EQUALS,
 
@@ -66,18 +61,19 @@ namespace DungeonLang.Parser.AST
             bool result;
             switch (_operation)
             {
+                case Operator.EQUALS: result = number1 == number2; _operator = "=="; break;
+                case Operator.NOT_EQUALS: result = number1 != number2; _operator = "!="; break;
+
                 case Operator.LT: result = number1 < number2; _operator = "<"; break;
                 case Operator.LTEQ: result = number1 <= number2; _operator = "<="; break;
                 case Operator.GT: result = number1 > number2; _operator = ">"; break;
                 case Operator.GTEQ: result = number1 >= number2; _operator = ">="; break;
-                case Operator.NOT_EQUALS: result = number1 != number2; _operator = "!="; break;
 
                 case Operator.AND: result = (number1 != 0) && (number2 != 0); _operator = "&&"; break;
                 case Operator.OR: result = (number1 != 0) || (number2 != 0); _operator = "||"; break;
 
-                case Operator.EQUALS:
                 default:
-                    result = number1 == number2; _operator = "=="; break;
+                    throw new RuntimeExpression("Operation" + _operation + "is not supported");
             }
             return new NumberValue(result);
         }

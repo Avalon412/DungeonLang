@@ -30,6 +30,7 @@ namespace DungeonLang.Parser
         MINUS,
         STAR,
         SLASH,
+        PERCENT,
         EQ,
         EQEQ,
         EXCL,
@@ -39,10 +40,15 @@ namespace DungeonLang.Parser
         GT,
         GTEQ,
 
-        AMP,
-        AMPAMP,
-        BAR,
-        BARBAR,
+        LTLT,     // <<
+        GTGT,     // >>
+
+        TILDE,    // ~
+        CARET,    // ^
+        AMP,      // &
+        AMPAMP,   // &&
+        BAR,      // |
+        BARBAR,   // ||
 
         LPAREN,   // (
         RPAREN,   // )
