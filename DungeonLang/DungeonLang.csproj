@@ -101,6 +101,8 @@
     <Compile Include="Parser\AST\UnaryExpression.cs" />
     <Compile Include="Parser\AST\WhileStatement.cs" />
     <Compile Include="Parser\Lexer.cs" />
+    <Compile Include="Parser\LexerException.cs" />
+    <Compile Include="Parser\ParserException.cs" />
     <Compile Include="Parser\RDParser.cs" />
     <Compile Include="Parser\Token.cs" />
     <Compile Include="Parser\TokenType.cs" />

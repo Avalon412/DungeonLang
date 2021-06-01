@@ -8,7 +8,7 @@ namespace DungeonLang.Parser
 {
     class RDParser
     {
-        private static readonly Token EOF = new Token(TokenType.EOF, "");
+        private static readonly Token EOF = new Token(TokenType.EOF, "", -1, -1);
 
         private readonly List<Token> _tokens;
         private readonly int _size;
@@ -111,13 +111,13 @@ namespace DungeonLang.Parser
                 Consume(TokenType.EQ);
                 return new ArrayAssignmentStatement(array, ExpressionParse());
             }
-            throw new RuntimeException("Unknown statement");
+            throw new ParserException("Unknown statement: " + GetToken(0));
         }
 
         private Token Consume(TokenType type)
         {
             Token current = GetToken(0);
-            if (type != current.Type) throw new RuntimeException($"Token {current} doesn`t match {type}");
+            if (type != current.Type) throw new ParserException($"Token {current} doesn`t match {type}");
             _pos++;
             return current;
         }
@@ -416,7 +416,7 @@ namespace DungeonLang.Parser
                 }
                 if (IsMatch(TokenType.SLASH))
                 {
-                    result = new AST.BinaryExpression(BinaryExpression.Operator.REMINDER, result, Unary());
+                    result = new AST.BinaryExpression(BinaryExpression.Operator.DIVIDE, result, Unary());
                     continue;
                 }
                 if (IsMatch(TokenType.PERCENT))
@@ -487,7 +487,7 @@ namespace DungeonLang.Parser
                 IsMatch(TokenType.RPAREN);
                 return result;
             }
-            throw new RuntimeException("Unknown Expression");
+            throw new ParserException("Unknown Expression: " + current);
         }
 
         private bool IsMatch(TokenType type)

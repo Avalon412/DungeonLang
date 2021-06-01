@@ -13,6 +13,8 @@ namespace DungeonLang.Parser
         private readonly List<Token> _tokens;
         private readonly int _length;
         private int _pos;
+        private int _row;
+        private int _col;
 
         private static readonly string OPERATOR_CHARS = "+-*/%()[]{}=<>!&|,^~?:";
         private static readonly Dictionary<string, TokenType> OPERATORS;
@@ -61,6 +63,7 @@ namespace DungeonLang.Parser
             this._input = input;
             this._length = input.Length;
             this._tokens = new List<Token>();
+            this._row = this._col = 1;
         }
 
         public List<Token> Tokenize()
@@ -131,7 +134,7 @@ namespace DungeonLang.Parser
             char current = Peek(0);
             while (true)
             {
-                if (current == '\0') throw new RuntimeException("Missing close tag");
+                if (current == '\0') throw Error("Reached end of file while parsing multiline comment");
                 if (current == '*' && Peek(1) == '/') break;
                 current = Next();
             }
@@ -169,7 +172,7 @@ namespace DungeonLang.Parser
             {
                 if (current == '.')
                 {
-                    if (buffer.ToString().IndexOf(".") != -1) throw new RuntimeException("Invalid float number");
+                    if (buffer.ToString().IndexOf(".") != -1) throw Error("Invalid float number");
                 }
                 else if (!Char.IsDigit(current))
                 {
@@ -221,6 +224,7 @@ namespace DungeonLang.Parser
 
             while (true)
             {
+                if (current == '\0') throw Error("Reached end of file while parsing text string");
                 if (current == '\\')
                 {
                     current = Next();
@@ -253,7 +257,12 @@ namespace DungeonLang.Parser
 
         private void AddToken(TokenType type, string text)
         {
-            _tokens.Add(new Token(type, text));
+            _tokens.Add(new Token(type, text, _row, _col));
+        }
+
+        private LexerException Error(string text)
+        {
+            return new LexerException(_row, _col, text);
         }
 
         private char Peek(int relativePos)
@@ -266,7 +275,14 @@ namespace DungeonLang.Parser
         private char Next()
         {
             _pos++;
-            return Peek(0);
+            char result = Peek(0);
+            if (result == '\n')
+            {
+                _row++;
+                _col = 1;
+            }
+            else _col++;
+            return result;
         }
     }
 }
