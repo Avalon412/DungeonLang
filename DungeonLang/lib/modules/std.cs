@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -37,6 +38,17 @@ namespace DungeonLang.lib.modules
                 if (args.Length == 1)
                 {
                     return new StringValue("".PadLeft((int)args[0].AsNumber()));
+                }
+                return NumberValue.ZERO;
+            });
+            Functions.SetFunction("writeFile", args =>
+            {
+                if (args.Length == 2)
+                {
+                    using (var sw = new StreamWriter(args[0].ToString(), true, Encoding.UTF8))
+                    {
+                        sw.WriteLine(args[1].ToString());
+                    }
                 }
                 return NumberValue.ZERO;
             });

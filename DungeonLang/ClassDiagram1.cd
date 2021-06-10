@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DungeonLang.lib.ArrayValue" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAABAhEAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lib\ArrayValue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.lib.Functions" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAACAAAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>lib\Functions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.lib.NumberValue" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAgEAAAAggAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>lib\NumberValue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.lib.StringValue" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAgEAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lib\StringValue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.lib.UserDefinedFunction" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAEAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>lib\UserDefinedFunction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.lib.Variables" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAACAAAAACAAAAAAAAAAgAACBA=</HashCode>
+      <FileName>lib\Variables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.lib.modules.math" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>lib\modules\math.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.lib.modules.std" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>lib\modules\std.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ArrayAccessExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAEAAAAEAgAAAoAAAAAAAIAgAAEAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\ArrayAccessExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ArrayAssignmentStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAgAIAAAA=</HashCode>
+      <FileName>Parser\AST\ArrayAssignmentStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ArrayExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAABAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\ArrayExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.AssignmentStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAEAAAQEAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Parser\AST\AssignmentStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.BinaryExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAABhAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\BinaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.BlockStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Parser\AST\BlockStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.BreakStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\BreakStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ConditionalExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAABgAAAAAEAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Parser\AST\ConditionalExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ContinueStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\ContinueStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.DoWhileStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACAAAAAAAAAQEAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\DoWhileStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ForStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACAAAAAAAAAQEAACAAAAAAAAAAAAAAAAAAAgAAAI=</HashCode>
+      <FileName>Parser\AST\ForStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.FunctionalExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAIAAAAAAAAAAEAAAAAgAAAQAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\FunctionalExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.FunctionDefineStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAKAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Parser\AST\FunctionDefineStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.FunctionStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\FunctionStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.IfStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAACAAAAAAAAAgAAAgAA=</HashCode>
+      <FileName>Parser\AST\IfStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.PrintStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Parser\AST\PrintStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ReturnStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQGAAAAAAAAAAAAAAAAAEAAgAAAAAA=</HashCode>
+      <FileName>Parser\AST\ReturnStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.RuntimeExpression" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\RuntimeExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.TernaryExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAgACAAgAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\TernaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.UnaryExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAABhAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\UnaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.UseStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAQEAAAQAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Parser\AST\UseStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.ValueExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\ValueExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.VariableExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAIAAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\VariableExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.AST.WhileStatement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACAAAAAAAAAQEAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\WhileStatement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.226" />
+  </Class>
+  <Class Name="DungeonLang.Parser.Lexer" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgIAAgEAAAMEAQQCAAgIAABQAAQBQAAABAAAAAAAIAA=</HashCode>
+      <FileName>Parser\Lexer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.LexerException" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\LexerException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.ParserException" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\ParserException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.RDParser" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAmATAIBAQAGCwAAAgFgEKEgAQAAAACACAAAIKEAAE=</HashCode>
+      <FileName>Parser\RDParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.Token" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAQkAAAAAAAQAAEAAgAIAQAACAAAAAA=</HashCode>
+      <FileName>Parser\Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.visitors.AbstractVisitor">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\visitors\AbstractVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DungeonLang.Parser.visitors.AssignValidator">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\visitors\AssignValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.visitors.FunctionAdder">
+    <Position X="0.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\visitors\FunctionAdder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Parser.visitors.VariablePrinter">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\visitors\VariablePrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonLang.Program" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DungeonLang.lib.IFunction" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lib\IFunction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.lib.IValue" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lib\IValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.lib.modules.IModule" Collapsed="true">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>lib\modules\IModule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.Parser.AST.IExpression">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\IExpression.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.Parser.AST.INode">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\INode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.Parser.AST.IStatement">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\IStatement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DungeonLang.Parser.AST.IVisitor" Collapsed="true">
+    <Position X="13" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\AST\IVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DungeonLang.Parser.TokenType" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAoEUCQALEACIAAwSFhkCQxEKAEoBAAYAAMIEEAAAEA=</HashCode>
+      <FileName>Parser\TokenType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="DungeonLang.lib.Function" Collapsed="true">
+    <Position X="7.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>lib\Functions.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
